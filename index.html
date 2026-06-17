@@ -270,8 +270,8 @@ var STORAGE_KEY='pqo7005_mcq_v4';
 var state,curIdx=0,filtQ=[],answered=false;
 
 function defState(){return{wrongIds:{},correctIds:{},curTopic:'all',qOrder:[],theme:'light',font:'medium'};}
-function loadState(){try{var raw=localStorage.getItem(STORAGE_KEY);if(raw)return Object.assign(defState(),JSON.parse(raw));}catch(e){}return defState();}
-function saveState(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}
+function loadState(){try{var raw=localStorage.getItem(STORAGE_KEY);if(raw){var parsed=JSON.parse(raw);var def=defState();for(var k in def){if(parsed.hasOwnProperty(k))def[k]=parsed[k];}return def;}}catch(e){console.log('localStorage read failed, using defaults');}return defState();}
+function saveState(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(e){console.log('localStorage write failed (may be full or blocked), progress saved in memory only');}}
 
 function setTheme(t){state.theme=t;document.documentElement.setAttribute('data-theme',t);byId('tl').classList.toggle('active',t==='light');byId('td').classList.toggle('active',t==='dark');saveState();}
 function setFont(f){state.font=f;document.documentElement.setAttribute('data-font',f);byId('fs').classList.toggle('active',f==='small');byId('fm').classList.toggle('active',f==='medium');byId('fl').classList.toggle('active',f==='large');saveState();}
@@ -325,8 +325,10 @@ function renderQ(){
     byId('quizArea').innerHTML='<div class="quiz-card"><div class="all-done"><div class="icon">🎉</div><h3>All done!</h3><p>Pick another topic or reset.</p></div></div>';
     return;
   }
+  // Safety: clamp curIdx within bounds (handles edge cases with rapid navigation)
   if(curIdx>=filtQ.length)curIdx=filtQ.length-1;
   if(curIdx<0)curIdx=0;
+  if(!filtQ[curIdx]){curIdx=0;}
   var q=filtQ[curIdx];answered=false;
   var optOrd=shuffle([0,1,2,3]);
 
