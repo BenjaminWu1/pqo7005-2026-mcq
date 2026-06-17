@@ -1,171 +1,154 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="light" data-font="medium">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>PQO7005 2026 — MCQ Practice</title>
 <style>
 :root {
-  --bg: #f8fafc;
-  --surface: #ffffff;
-  --border: #e2e8f0;
-  --text: #1e293b;
-  --text-secondary: #64748b;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --correct-bg: #dcfce7;
-  --correct-border: #4ade80;
-  --correct-text: #166534;
-  --wrong-bg: #fee2e2;
-  --wrong-border: #f87171;
-  --wrong-text: #991b1b;
-  --option-bg: #f1f5f9;
-  --option-hover: #e2e8f0;
-  --badge-bg: #ede9fe;
-  --badge-text: #6d28d9;
-  --stat-bg: #ffffff;
-  --shadow: 0 1px 3px rgba(0,0,0,0.08);
-  --shadow-lg: 0 4px 12px rgba(0,0,0,0.1);
-  --toast-bg: #1e293b;
-  --toast-text: #f1f5f9;
-  --review-bg: #f8fafc;
-  --btn-secondary-bg: #e2e8f0;
-  --btn-secondary-text: #334155;
-  --btn-danger-bg: #fee2e2;
-  --btn-danger-text: #991b1b;
-  --progress-bg: #e2e8f0;
-  --highlight-answer: #fef3c7;
+  --bg: #f8fafc; --surface: #ffffff; --border: #e2e8f0; --text: #1e293b;
+  --text-secondary: #64748b; --accent: #2563eb; --accent-hover: #1d4ed8;
+  --correct-bg: #dcfce7; --correct-border: #4ade80; --correct-text: #166534;
+  --wrong-bg: #fee2e2; --wrong-border: #f87171; --wrong-text: #991b1b;
+  --option-bg: #f1f5f9; --option-hover: #e2e8f0; --badge-bg: #ede9fe;
+  --badge-text: #6d28d9; --stat-bg: #ffffff; --shadow: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,0.1); --toast-bg: #1e293b;
+  --toast-text: #f1f5f9; --review-bg: #f8fafc;
+  --btn-secondary-bg: #e2e8f0; --btn-secondary-text: #334155;
+  --btn-danger-bg: #fee2e2; --btn-danger-text: #991b1b;
+  --progress-bg: #e2e8f0; --highlight-answer: #fef3c7;
+  /* Font scale */
+  --fs-h1: 1.15rem; --fs-badge: 0.65rem; --fs-qnum: 0.7rem; --fs-qtext: 0.95rem;
+  --fs-option: 0.88rem; --fs-feedback: 0.85rem; --fs-btn: 0.72rem;
+  --fs-topic-btn: 0.68rem; --fs-stat-num: 1.2rem; --fs-stat-label: 0.6rem;
+  --fs-toast: 0.75rem; --fs-auto: 0.65rem; --fs-review-h2: 0.95rem;
+  --fs-review-item: 0.82rem; --fs-review-correct: 0.78rem; --fs-review-topic: 0.62rem;
+  --fs-review-attempts: 0.65rem; --fs-theme-btn: 0.65rem; --fs-font-btn: 0.6rem;
+  --fs-review-q: 0.82rem;
+}
+[data-font="small"] {
+  --fs-h1: 0.95rem; --fs-badge: 0.58rem; --fs-qnum: 0.62rem; --fs-qtext: 0.8rem;
+  --fs-option: 0.74rem; --fs-feedback: 0.72rem; --fs-btn: 0.62rem;
+  --fs-topic-btn: 0.6rem; --fs-stat-num: 1rem; --fs-stat-label: 0.52rem;
+  --fs-toast: 0.65rem; --fs-auto: 0.55rem; --fs-review-h2: 0.8rem;
+  --fs-review-item: 0.7rem; --fs-review-correct: 0.66rem; --fs-review-topic: 0.55rem;
+  --fs-review-attempts: 0.55rem; --fs-theme-btn: 0.58rem; --fs-font-btn: 0.55rem;
+  --fs-review-q: 0.7rem;
+}
+[data-font="large"] {
+  --fs-h1: 1.4rem; --fs-badge: 0.78rem; --fs-qnum: 0.85rem; --fs-qtext: 1.15rem;
+  --fs-option: 1.05rem; --fs-feedback: 1rem; --fs-btn: 0.85rem;
+  --fs-topic-btn: 0.8rem; --fs-stat-num: 1.5rem; --fs-stat-label: 0.72rem;
+  --fs-toast: 0.9rem; --fs-auto: 0.78rem; --fs-review-h2: 1.1rem;
+  --fs-review-item: 0.98rem; --fs-review-correct: 0.9rem; --fs-review-topic: 0.72rem;
+  --fs-review-attempts: 0.78rem; --fs-theme-btn: 0.78rem; --fs-font-btn: 0.72rem;
+  --fs-review-q: 0.98rem;
 }
 [data-theme="dark"] {
-  --bg: #0f172a;
-  --surface: #1e293b;
-  --border: #334155;
-  --text: #f1f5f9;
-  --text-secondary: #94a3b8;
-  --accent: #3b82f6;
-  --accent-hover: #2563eb;
-  --correct-bg: #14532d;
-  --correct-border: #4ade80;
-  --correct-text: #bbf7d0;
-  --wrong-bg: #7f1d1d;
-  --wrong-border: #f87171;
-  --wrong-text: #fecaca;
-  --option-bg: #0f172a;
-  --option-hover: #1e293b;
-  --badge-bg: #312e81;
-  --badge-text: #a5b4fc;
-  --stat-bg: #1e293b;
-  --shadow: 0 1px 3px rgba(0,0,0,0.3);
-  --shadow-lg: 0 4px 12px rgba(0,0,0,0.4);
-  --toast-bg: #334155;
-  --toast-text: #f1f5f9;
-  --review-bg: #1e293b;
-  --btn-secondary-bg: #334155;
-  --btn-secondary-text: #e2e8f0;
-  --btn-danger-bg: #7f1d1d;
-  --btn-danger-text: #fecaca;
-  --progress-bg: #334155;
-  --highlight-answer: #422006;
+  --bg: #0f172a; --surface: #1e293b; --border: #334155; --text: #f1f5f9;
+  --text-secondary: #94a3b8; --accent: #3b82f6; --accent-hover: #2563eb;
+  --correct-bg: #14532d; --correct-border: #4ade80; --correct-text: #bbf7d0;
+  --wrong-bg: #7f1d1d; --wrong-border: #f87171; --wrong-text: #fecaca;
+  --option-bg: #0f172a; --option-hover: #1e293b; --badge-bg: #312e81;
+  --badge-text: #a5b4fc; --stat-bg: #1e293b; --shadow: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,0.4); --toast-bg: #334155;
+  --toast-text: #f1f5f9; --review-bg: #1e293b;
+  --btn-secondary-bg: #334155; --btn-secondary-text: #e2e8f0;
+  --btn-danger-bg: #7f1d1d; --btn-danger-text: #fecaca;
+  --progress-bg: #334155; --highlight-answer: #422006;
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; min-height: 100dvh; transition: background 0.3s, color 0.3s; -webkit-tap-highlight-color: transparent; }
-.container { max-width: 500px; margin: 0 auto; padding: 12px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100dvh; transition: background 0.3s, color 0.3s; -webkit-tap-highlight-color: transparent; }
+.container { max-width: 500px; margin:0 auto; padding: 12px; }
 
-/* Header */
-.header { text-align: center; padding: 16px 8px 8px; }
-.header h1 { font-size: 1.15rem; color: var(--text); margin-bottom: 2px; }
-.header .course-code { font-size: 0.75rem; color: var(--accent); font-weight: 600; letter-spacing: 0.5px; }
+.header { text-align: center; padding: 12px 8px 4px; }
+.header h1 { font-size: var(--fs-h1); color: var(--text); margin-bottom: 1px; }
+.header .course-code { font-size: var(--fs-badge); color: var(--accent); font-weight: 600; letter-spacing: 0.5px; }
 
-/* Theme Toggle */
-.theme-bar { display: flex; justify-content: flex-end; gap: 6px; margin-bottom: 4px; }
-.theme-btn { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 5px 12px; font-size: 0.7rem; cursor: pointer; color: var(--text-secondary); transition: all 0.15s; }
-.theme-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+/* Settings bar */
+.settings-bar { display: flex; justify-content: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; align-items: center; }
+.settings-group { display: flex; gap: 3px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2px; }
+.setting-btn { background: transparent; border: none; border-radius: 14px; padding: 4px 9px; font-size: var(--fs-font-btn); cursor: pointer; color: var(--text-secondary); transition: all 0.15s; }
+.setting-btn.active { background: var(--accent); color: #fff; }
+.setting-label { font-size: var(--fs-font-btn); color: var(--text-secondary); margin: 0 2px; }
 
-/* Stats Bar */
-.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 10px; }
+.stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; margin-bottom: 10px; }
 .stat-card { background: var(--stat-bg); border: 1px solid var(--border); border-radius: 10px; padding: 8px 4px; text-align: center; box-shadow: var(--shadow); }
-.stat-card .num { font-size: 1.2rem; font-weight: 700; }
-.stat-card .label { font-size: 0.6rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.3px; }
-.stat-card.correct .num { color: #4ade80; }
-.stat-card.wrong .num { color: #f87171; }
-.stat-card.remaining .num { color: #60a5fa; }
-.stat-card.total-q .num { color: #c084fc; }
+.stat-card .num { font-size: var(--fs-stat-num); font-weight: 700; }
+.stat-card .label { font-size: var(--fs-stat-label); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.3px; }
+.stat-card.correct .num { color: #4ade80; } .stat-card.wrong .num { color: #f87171; }
+.stat-card.remaining .num { color: #60a5fa; } .stat-card.total-q .num { color: #c084fc; }
 
-/* Progress Bar */
 .progress-wrap { background: var(--progress-bg); border-radius: 4px; height: 4px; margin-bottom: 10px; overflow: hidden; }
 .progress-fill { height: 100%; background: linear-gradient(90deg, #4ade80, #3b82f6); border-radius: 4px; transition: width 0.3s; }
 
-/* Topic Pills */
 .topic-nav { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
-.topic-btn { background: var(--surface); border: 1px solid var(--border); color: var(--text-secondary); padding: 5px 10px; border-radius: 16px; cursor: pointer; font-size: 0.68rem; transition: all 0.15s; white-space: nowrap; }
+.topic-btn { background: var(--surface); border: 1px solid var(--border); color: var(--text-secondary); padding: 5px 10px; border-radius: 16px; cursor: pointer; font-size: var(--fs-topic-btn); transition: all 0.15s; white-space: nowrap; }
 .topic-btn:active { transform: scale(0.96); }
-.topic-btn.active, .topic-btn.all-active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.topic-btn.active,.topic-btn.all-active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
-/* Quiz Card */
 .quiz-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px; box-shadow: var(--shadow-lg); margin-bottom: 10px; }
-.q-badge { display: inline-block; background: var(--badge-bg); color: var(--badge-text); font-size: 0.65rem; padding: 2px 8px; border-radius: 10px; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
-.q-num { font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 6px; font-weight: 500; }
-.q-text { font-size: 0.95rem; color: var(--text); margin-bottom: 14px; line-height: 1.45; font-weight: 500; }
+.q-badge { display: inline-block; background: var(--badge-bg); color: var(--badge-text); font-size: var(--fs-badge); padding: 2px 8px; border-radius: 10px; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+.q-num { font-size: var(--fs-qnum); color: var(--text-secondary); margin-bottom: 6px; font-weight: 500; }
+.q-text { font-size: var(--fs-qtext); color: var(--text); margin-bottom: 14px; line-height: 1.45; font-weight: 500; }
 .options { display: flex; flex-direction: column; gap: 7px; }
-.option { background: var(--option-bg); border: 2px solid var(--border); border-radius: 10px; padding: 11px 14px; cursor: pointer; transition: all 0.12s; font-size: 0.88rem; color: var(--text); user-select: none; -webkit-user-select: none; position: relative; }
+.option { background: var(--option-bg); border: 2px solid var(--border); border-radius: 10px; padding: 11px 14px; cursor: pointer; transition: all 0.12s; font-size: var(--fs-option); color: var(--text); user-select: none; -webkit-user-select: none; }
 .option:active { transform: scale(0.98); }
-.option.correct-reveal { border-color: var(--correct-border) !important; background: var(--correct-bg) !important; color: var(--correct-text) !important; font-weight: 600; }
-.option.wrong-reveal { border-color: var(--wrong-border) !important; background: var(--wrong-bg) !important; color: var(--wrong-text) !important; }
-.option.highlight-correct { border-color: var(--correct-border) !important; background: var(--correct-bg) !important; color: var(--correct-text) !important; font-weight: 600; }
+.option.correct-reveal { border-color: var(--correct-border)!important; background: var(--correct-bg)!important; color: var(--correct-text)!important; font-weight: 600; }
+.option.wrong-reveal { border-color: var(--wrong-border)!important; background: var(--wrong-bg)!important; color: var(--wrong-text)!important; }
+.option.highlight-correct { border-color: var(--correct-border)!important; background: var(--correct-bg)!important; color: var(--correct-text)!important; font-weight: 600; }
 
-/* Feedback flash */
-.feedback-flash { text-align: center; padding: 8px; font-size: 0.85rem; font-weight: 700; border-radius: 8px; margin-top: 12px; }
-.feedback-flash.correct { color: var(--correct-text); }
-.feedback-flash.wrong { color: var(--wrong-text); }
+.feedback-flash { text-align: center; padding: 8px; font-size: var(--fs-feedback); font-weight: 700; border-radius: 8px; margin-top: 12px; }
+.feedback-flash.correct { color: var(--correct-text); } .feedback-flash.wrong { color: var(--wrong-text); }
 
-/* Control Row */
 .control-row { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; justify-content: center; }
-.btn { padding: 7px 14px; border-radius: 16px; font-size: 0.72rem; font-weight: 600; cursor: pointer; border: 1px solid var(--border); transition: all 0.15s; background: var(--surface); color: var(--text-secondary); }
+.btn { padding: 7px 14px; border-radius: 16px; font-size: var(--fs-btn); font-weight: 600; cursor: pointer; border: 1px solid var(--border); transition: all 0.15s; background: var(--surface); color: var(--text-secondary); }
 .btn:active { transform: scale(0.96); }
 .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
 .btn-danger { background: var(--btn-danger-bg); color: var(--btn-danger-text); border-color: var(--wrong-border); }
 
-/* Review Section */
 .review-section { margin-top: 16px; }
 .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-.review-header h2 { font-size: 0.95rem; color: var(--text); }
+.review-header h2 { font-size: var(--fs-review-h2); color: var(--text); }
 .review-item { background: var(--review-bg); border: 1px solid var(--border); border-radius: 10px; padding: 12px; margin-bottom: 8px; box-shadow: var(--shadow); }
-.review-item .r-topic { font-size: 0.62rem; color: var(--badge-text); font-weight: 600; text-transform: uppercase; margin-bottom: 4px; }
-.review-item .r-q { font-size: 0.82rem; color: var(--text); margin-bottom: 4px; line-height: 1.35; }
-.review-item .r-correct { font-size: 0.78rem; color: #4ade80; font-weight: 600; }
-.review-item .r-attempts { font-size: 0.65rem; color: var(--text-secondary); margin-top: 3px; }
+.review-item .r-topic { font-size: var(--fs-review-topic); color: var(--badge-text); font-weight: 600; text-transform: uppercase; margin-bottom: 4px; }
+.review-item .r-q { font-size: var(--fs-review-q); color: var(--text); margin-bottom: 4px; line-height: 1.35; }
+.review-item .r-correct { font-size: var(--fs-review-correct); color: #4ade80; font-weight: 600; }
+.review-item .r-attempts { font-size: var(--fs-review-attempts); color: var(--text-secondary); margin-top: 3px; }
 .empty-state { text-align: center; padding: 30px 20px; color: var(--text-secondary); }
-.empty-state .icon { font-size: 2.5rem; margin-bottom: 8px; }
-.empty-state p { font-size: 0.85rem; }
+.empty-state .icon { font-size: 2.5rem; margin-bottom: 8px; } .empty-state p { font-size: var(--fs-option); }
 
-/* Toast */
-.toast { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); background: var(--toast-bg); color: var(--toast-text); border-radius: 20px; padding: 8px 18px; font-size: 0.75rem; z-index: 100; display: none; animation: toastUp 0.3s ease; white-space: nowrap; box-shadow: var(--shadow-lg); }
+.toast { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); background: var(--toast-bg); color: var(--toast-text); border-radius: 20px; padding: 8px 18px; font-size: var(--fs-toast); z-index: 100; display: none; animation: toastUp 0.3s ease; white-space: nowrap; box-shadow: var(--shadow-lg); }
 .toast.show { display: block; }
 @keyframes toastUp { from { transform: translateX(-50%) translateY(30px); opacity: 0; } to { transform: translateX(-50%) translateY(0); opacity: 1; } }
 
-/* Auto-advance indicator */
-.auto-indicator { display: flex; align-items: center; justify-content: center; gap: 4px; margin-top: 12px; font-size: 0.65rem; color: var(--text-secondary); }
+.auto-indicator { display: flex; align-items: center; justify-content: center; gap: 4px; margin-top: 12px; font-size: var(--fs-auto); color: var(--text-secondary); }
 .auto-indicator .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); animation: pulse 1s infinite; }
-.auto-indicator .dot:nth-child(2) { animation-delay: 0.15s; }
-.auto-indicator .dot:nth-child(3) { animation-delay: 0.3s; }
-@keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+.auto-indicator .dot:nth-child(2) { animation-delay: 0.15s; } .auto-indicator .dot:nth-child(3) { animation-delay: 0.3s; }
+@keyframes pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
 </style>
 </head>
 <body>
 <div class="container">
-
   <div class="header">
     <div class="course-code">PQO7005 2026</div>
     <h1>Motor Learning Principle &amp; Sports Psychology</h1>
   </div>
 
-  <!-- Theme Toggle -->
-  <div class="theme-bar">
-    <button class="theme-btn active" onclick="setTheme('light')" id="themeLight">☀️ Light</button>
-    <button class="theme-btn" onclick="setTheme('dark')" id="themeDark">🌙 Dark</button>
+  <!-- Settings: Theme + Font Size -->
+  <div class="settings-bar">
+    <div class="settings-group">
+      <button class="setting-btn active" onclick="setTheme('light')" id="tl">☀️</button>
+      <button class="setting-btn" onclick="setTheme('dark')" id="td">🌙</button>
+    </div>
+    <span class="setting-label">Font</span>
+    <div class="settings-group">
+      <button class="setting-btn" onclick="setFont('small')" id="fs">A⁻</button>
+      <button class="setting-btn active" onclick="setFont('medium')" id="fm">A</button>
+      <button class="setting-btn" onclick="setFont('large')" id="fl">A⁺</button>
+    </div>
   </div>
 
-  <!-- Stats -->
   <div class="stats">
     <div class="stat-card remaining"><div class="num" id="statRemaining">0</div><div class="label">Left</div></div>
     <div class="stat-card correct"><div class="num" id="statCorrect">0</div><div class="label">Correct</div></div>
@@ -173,18 +156,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
     <div class="stat-card total-q"><div class="num" id="statTotal">0</div><div class="label">Total</div></div>
   </div>
   <div class="progress-wrap"><div class="progress-fill" id="progressBar" style="width:0%"></div></div>
-
-  <!-- Topic Filter -->
   <div class="topic-nav" id="topicNav"></div>
-
-  <!-- Controls -->
   <div class="control-row">
     <button class="btn" onclick="shuffleQuestions()">🔀 Shuffle</button>
     <button class="btn" onclick="resetProgress()">🔄 Reset</button>
     <button class="btn btn-danger" onclick="showWrongReview()" id="btnReview">📋 Wrong (<span id="wrongCountNav">0</span>)</button>
   </div>
-
-  <!-- Quiz Area -->
   <div id="quizArea">
     <div class="quiz-card">
       <div class="q-badge" id="qTopic">TOPIC</div>
@@ -194,329 +171,198 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
       <div class="feedback-flash" id="feedback" style="display:none;"></div>
     </div>
   </div>
-
-  <!-- Wrong Review -->
   <div class="review-section" id="reviewSection" style="display:none;"></div>
-
 </div>
 <div class="toast" id="toast"></div>
 
 <script>
-// ============ QUESTION BANK ============
 const QUESTIONS = [
-  // TOPIC 1
-  { id: 1, topic: "Motor Skills & Classification", question: "Which motor skill type involves large muscle groups and whole body movement?", options: ["Gross Motor Skills", "Fine Motor Skills", "Cognitive Motor Skills", "Reflexive Motor Skills"], answer: 0 },
-  { id: 2, topic: "Motor Skills & Classification", question: "Running, jumping, and throwing are examples of which motor skill type?", options: ["Fine Motor Skills", "Cognitive Motor Skills", "Gross Motor Skills", "Serial Motor Skills"], answer: 2 },
-  { id: 3, topic: "Motor Skills & Classification", question: "Which motor skill type involves small muscles and requires precision and dexterity?", options: ["Gross Motor Skills", "Fine Motor Skills", "Cognitive Motor Skills", "Continuous Motor Skills"], answer: 1 },
-  { id: 4, topic: "Motor Skills & Classification", question: "Writing, drawing, and using utensils are examples of which motor skill type?", options: ["Gross Motor Skills", "Cognitive Motor Skills", "Fine Motor Skills", "Discrete Motor Skills"], answer: 2 },
-  { id: 5, topic: "Motor Skills & Classification", question: "Which motor skill type integrates thinking and movement?", options: ["Gross Motor Skills", "Fine Motor Skills", "Reflexive Motor Skills", "Cognitive Motor Skills"], answer: 3 },
-  { id: 6, topic: "Motor Skills & Classification", question: "Cognitive motor skills involve:", options: ["Strength and balance only", "Problem-solving, decision-making, and strategic planning", "Running and jumping only", "Reflex actions only"], answer: 1 },
-  { id: 7, topic: "Motor Skills & Classification", question: "Why classify motor skills?", options: ["Academic research only", "Design interventions & guide teaching strategies for physical development", "Professional athletes only", "Replace physical education"], answer: 1 },
-  { id: 8, topic: "Motor Skills & Classification", question: "Which is a FINE motor skill?", options: ["Running a marathon", "Writing a letter", "Jumping over a hurdle", "Kicking a soccer ball"], answer: 1 },
-  // TOPIC 2
-  { id: 9, topic: "Atkinson & Shiffrin (1968)", question: "When did Atkinson & Shiffrin propose their multi-store memory model?", options: ["1975", "1968", "1990", "1958"], answer: 1 },
-  { id: 10, topic: "Atkinson & Shiffrin (1968)", question: "What type of model is Atkinson & Shiffrin's theory?", options: ["Single-store model", "Dual-store model", "Multi-store model (multi-stage theory)", "Working memory model"], answer: 2 },
-  { id: 11, topic: "Atkinson & Shiffrin (1968)", question: "Memory is best defined as:", options: ["Short-term recall only", "Record of experiences; storehouse of mind; storage of learned info for retrieval & future use", "Ability to think quickly", "A physical muscle in the brain"], answer: 1 },
-  { id: 12, topic: "Atkinson & Shiffrin (1968)", question: "Richard Atkinson was born:", options: ["March 13, 1942", "March 19, 1929", "January 1, 1930", "March 19, 1942"], answer: 1 },
-  { id: 13, topic: "Atkinson & Shiffrin (1968)", question: "Richard Shiffrin was born:", options: ["March 19, 1929", "March 13, 1942", "January 13, 1945", "March 13, 1938"], answer: 1 },
-  { id: 14, topic: "Atkinson & Shiffrin (1968)", question: "Shiffrin was a professor at:", options: ["Harvard", "Stanford", "Indiana University, Bloomington", "Yale"], answer: 2 },
-  { id: 15, topic: "Atkinson & Shiffrin (1968)", question: "Correct order of the 3 memory stores:", options: ["LTM → STM → Sensory", "Sensory → LTM → STM", "STM → Sensory → LTM", "Sensory → STM → LTM"], answer: 3 },
-  { id: 16, topic: "Atkinson & Shiffrin (1968)", question: "Sensory memory duration:", options: ["1–5 sec", "15–30 sec", "1–2 min", "Unlimited"], answer: 1 },
-  { id: 17, topic: "Atkinson & Shiffrin (1968)", question: "Sensory memory capacity:", options: ["Unlimited", "3 ± 1 items", "7 ± 2 items", "10 ± 3 items"], answer: 2 },
-  { id: 18, topic: "Atkinson & Shiffrin (1968)", question: "LTM duration & capacity:", options: ["Limited duration, unlimited capacity", "Unlimited duration & unlimited capacity", "Unlimited duration, limited capacity", "Both limited"], answer: 1 },
-  { id: 19, topic: "Atkinson & Shiffrin (1968)", question: "Info stored in LTM as:", options: ["Memory trace", "Sensory snapshot", "Neural spark", "Temporary buffer"], answer: 0 },
-  { id: 20, topic: "Atkinson & Shiffrin (1968)", question: "The 3 stages of memory process:", options: ["Encoding → Storage → Retrieval", "Attention → Retention → Recall", "Input → Process → Output", "Sensory → Working → Permanent"], answer: 0 },
-  { id: 21, topic: "Atkinson & Shiffrin (1968)", question: "Encoding =", options: ["Retention over time", "Getting info out of storage", "Processing info into memory system", "Forgetting irrelevant info"], answer: 2 },
-  { id: 22, topic: "Atkinson & Shiffrin (1968)", question: "Storage =", options: ["Processing into memory", "Retention of encoded material over time", "Getting info out of storage", "Deletion of old memories"], answer: 1 },
-  { id: 23, topic: "Atkinson & Shiffrin (1968)", question: "Retrieval =", options: ["Processing into memory", "Retention over time", "Getting info out of storage for application", "Fading of memory traces"], answer: 2 },
-  { id: 24, topic: "Atkinson & Shiffrin (1968)", question: "Forgetting =", options: ["Never encoding info", "Apparent loss/modification of stored info; spontaneous/gradual process", "Inability to pay attention", "Intentional deletion of all memories"], answer: 1 },
-  { id: 25, topic: "Atkinson & Shiffrin (1968)", question: "How many causes of forgetting?", options: ["3", "4", "5", "6"], answer: 2 },
-  { id: 26, topic: "Atkinson & Shiffrin (1968)", question: "NOT a cause of forgetting:", options: ["Interference", "Encoding Failure", "Over-rehearsal", "Decay"], answer: 2 },
-  { id: 27, topic: "Atkinson & Shiffrin (1968)", question: "Retroactive interference:", options: ["Old disrupts new", "New disrupts recall of old", "Information decays", "Never encoded"], answer: 1 },
-  { id: 28, topic: "Atkinson & Shiffrin (1968)", question: "Proactive interference:", options: ["Old memories disrupt new learning", "New disrupts old", "Deliberate forgetting", "Memory trace fades"], answer: 0 },
-  { id: 29, topic: "Atkinson & Shiffrin (1968)", question: "Walker & Williams (2008) — subjects:", options: ["10 + 10", "12 experienced + 12 inexperienced", "15 + 15", "20 + 20"], answer: 1 },
-  { id: 30, topic: "Atkinson & Shiffrin (1968)", question: "Walker & Williams (2008) — clip duration:", options: ["5 sec", "10 sec", "15 sec", "30 sec"], answer: 1 },
-  { id: 31, topic: "Atkinson & Shiffrin (1968)", question: "Walker & Williams — experts had better recall on:", options: ["Unstructured only", "Both equally", "Structured trials only", "Neither"], answer: 2 },
-  { id: 32, topic: "Atkinson & Shiffrin (1968)", question: "Baddeley (1975) studied:", options: ["Children's memory", "Diving context effect — better recall in matching context", "Music effect on memory", "Memory decay"], answer: 1 },
-  { id: 33, topic: "Atkinson & Shiffrin (1968)", question: "Baddeley (1975) — recall better when:", options: ["Contexts matched", "On land only", "In water only", "No context effect"], answer: 0 },
-  { id: 34, topic: "Atkinson & Shiffrin (1968)", question: "STM capacity:", options: ["Unlimited", "Limited", "Depends on person", "Cannot be measured"], answer: 1 },
-  { id: 35, topic: "Atkinson & Shiffrin (1968)", question: "Best techniques for storage & retrieval:", options: ["Rote only", "Chunking, Mnemonic Devices, Rehearsal", "Ignore attention limits", "Lectures without breaks"], answer: 1 },
-  { id: 36, topic: "Atkinson & Shiffrin (1968)", question: "Educational — two memory types:", options: ["Sensory & Motor", "Implicit & Explicit Memory", "Short & Long", "Visual & Auditory"], answer: 1 },
-  { id: 37, topic: "Atkinson & Shiffrin (1968)", question: "Walker & Williams screen size:", options: ["1.0 m²", "2.5 m²", "3.65 m²", "5.0 m²"], answer: 2 },
-  { id: 38, topic: "Atkinson & Shiffrin (1968)", question: "Atkinson's fields:", options: ["Only psychology", "Psychology, cognitive science, academic administration", "Only sports science", "Physics & math"], answer: 1 },
-  { id: 39, topic: "Atkinson & Shiffrin (1968)", question: "Experts' memory advantage:", options: ["Simpler LTM", "More complex & discriminating LTM; better task-specific encoding", "Same as novices", "Worse than novices"], answer: 1 },
-  { id: 40, topic: "Atkinson & Shiffrin (1968)", question: "How many criticisms?", options: ["3", "4", "5", "2"], answer: 1 },
-  { id: 41, topic: "Atkinson & Shiffrin (1968)", question: "NOT a criticism:", options: ["Oversimplified", "Assumes stores independent", "No memory distortion explanation", "Overemphasizes emotion"], answer: 3 },
-  // TOPIC 3
-  { id: 42, topic: "Fitts & Posner Stages", question: "Motor learning =", options: ["Simple repetition", "Brain process → practice → CNS changes → new motor skill", "Only physical training", "Innate unchangeable ability"], answer: 1 },
-  { id: 43, topic: "Fitts & Posner Stages", question: "Fitts & Posner focuses on:", options: ["Only physical aspects", "Attentional demands + practice time to reach each stage", "Only cognition", "Genetics"], answer: 1 },
-  { id: 44, topic: "Fitts & Posner Stages", question: "Number of stages:", options: ["2", "3", "4", "5"], answer: 1 },
-  { id: 45, topic: "Fitts & Posner Stages", question: "Stage 1:", options: ["Autonomous", "Associative", "Cognitive", "Reflexive"], answer: 2 },
-  { id: 46, topic: "Fitts & Posner Stages", question: "Stage 2:", options: ["Cognitive", "Associative", "Autonomous", "Preparatory"], answer: 1 },
-  { id: 47, topic: "Fitts & Posner Stages", question: "Stage 3:", options: ["Cognitive", "Associative", "Autonomous", "Mastery"], answer: 2 },
-  { id: 48, topic: "Fitts & Posner Stages", question: "Cognitive — movement is:", options: ["Fully automatic", "Broken into sequence; step-by-step", "Highly fluent", "Thoughtless"], answer: 1 },
-  { id: 49, topic: "Fitts & Posner Stages", question: "Cognitive — control:", options: ["Automatic", "Conscious control", "Reflexive", "None"], answer: 1 },
-  { id: 50, topic: "Fitts & Posner Stages", question: "LARGEST variation & error:", options: ["Autonomous", "Associative", "Cognitive", "All equal"], answer: 2 },
-  { id: 51, topic: "Fitts & Posner Stages", question: "Associative — movement:", options: ["More fluent", "More errors", "Fully automatic", "Uncontrollable"], answer: 0 },
-  { id: 52, topic: "Fitts & Posner Stages", question: "Associative — working memory:", options: ["Increases", "Stays same", "Decreases", "Eliminated"], answer: 2 },
-  { id: 53, topic: "Fitts & Posner Stages", question: "Associative requires:", options: ["No practice", "Deliberate practice", "Observation only", "Innate talent"], answer: 1 },
-  { id: 54, topic: "Fitts & Posner Stages", question: "Autonomous — cognitive effort:", options: ["Maximum", "Moderate", "Minimal", "Variable"], answer: 2 },
-  { id: 55, topic: "Fitts & Posner Stages", question: "Autonomous — what improves?", options: ["Error rate", "Anticipation & decision-making", "Need for feedback", "Working memory reliance"], answer: 1 },
-  { id: 56, topic: "Fitts & Posner Stages", question: "Autonomous — error detection:", options: ["Disappears", "Greater ability", "Same as Cognitive", "Not relevant"], answer: 1 },
-  { id: 57, topic: "Fitts & Posner Stages", question: "HIGHEST accuracy:", options: ["Cognitive", "Associative", "Autonomous", "Pre-learning"], answer: 2 },
-  { id: 58, topic: "Fitts & Posner Stages", question: "Cognitive summary:", options: ["Improving technique", "High accuracy", "Learning new skill — 'Learn from basic'", "Mastery"], answer: 2 },
-  { id: 59, topic: "Fitts & Posner Stages", question: "Associative summary:", options: ["Learning new skill", "Improving technique — 'PRACTICE!!'", "High accuracy", "No improvement"], answer: 1 },
-  { id: 60, topic: "Fitts & Posner Stages", question: "Autonomous summary:", options: ["Learning new skill", "Practicing basics", "High accuracy & consistency — 'I AM PRO!!'", "Starting from scratch"], answer: 2 },
-  { id: 61, topic: "Fitts & Posner Stages", question: "Ahmad Jr (first shooting lesson):", options: ["Autonomous", "Associative", "Cognitive", "Beyond stages"], answer: 2 },
-  { id: 62, topic: "Fitts & Posner Stages", question: "Khaled (30 min practice for team):", options: ["Cognitive", "Associative", "Autonomous", "Pre-learning"], answer: 1 },
-  { id: 63, topic: "Fitts & Posner Stages", question: "Ronaldo (scoring 2-0 for Portugal):", options: ["Cognitive", "Associative", "Autonomous", "Never reached any stage"], answer: 2 },
-  { id: 64, topic: "Fitts & Posner Stages", question: "Error trend across stages:", options: ["Increase", "Stay same", "Decrease (large → high accuracy)", "Disappear at Associative"], answer: 2 },
-  // TOPIC 4
-  { id: 65, topic: "Schmidt Schema Theory (1975)", question: "Who proposed Schema Theory?", options: ["Richard Atkinson", "Richard Shiffrin", "Richard A. Schmidt", "Albert Bandura"], answer: 2 },
-  { id: 66, topic: "Schmidt Schema Theory (1975)", question: "Year:", options: ["1968", "1975", "1990", "1980"], answer: 1 },
-  { id: 67, topic: "Schmidt Schema Theory (1975)", question: "Schema Theory is for:", options: ["Continuous skills", "Serial skills", "Discrete motor skills", "All equally"], answer: 2 },
-  { id: 68, topic: "Schmidt Schema Theory (1975)", question: "Movement info stored in:", options: ["STM only", "LTM in the brain", "Muscles", "Spinal cord"], answer: 1 },
-  { id: 69, topic: "Schmidt Schema Theory (1975)", question: "More practice → larger programme →", options: ["Slower adaptation", "Easier adaptation to new situations", "No change", "More errors"], answer: 1 },
-  { id: 70, topic: "Schmidt Schema Theory (1975)", question: "Sports examples:", options: ["Swimming & cycling", "Long passing in netball & throwing in softball", "Running & jumping", "Gymnastics & diving"], answer: 1 },
-  { id: 71, topic: "Schmidt Schema Theory (1975)", question: "STM stores ___ things during movement:", options: ["2", "3", "4", "5"], answer: 2 },
-  { id: 72, topic: "Schmidt Schema Theory (1975)", question: "NOT one of the 4 things stored:", options: ["Initial Conditions", "Response Selection", "Response Outcomes", "Genetic Predisposition"], answer: 3 },
-  { id: 73, topic: "Schmidt Schema Theory (1975)", question: "Initial Conditions:", options: ["Only weather", "Position, fatigue, goal, opposition, teammates", "Only score", "Only coach's instructions"], answer: 1 },
-  { id: 74, topic: "Schmidt Schema Theory (1975)", question: "Response Selection:", options: ["Type of skill; how fast/hard; where teammates?", "Final score only", "Coach's decision", "Random actions"], answer: 0 },
-  { id: 75, topic: "Schmidt Schema Theory (1975)", question: "Response Outcomes =", options: ["Weather", "Success or Failure (from KR)", "Coach's mood", "Uniform color"], answer: 1 },
-  { id: 76, topic: "Schmidt Schema Theory (1975)", question: "Sensory Consequences =", options: ["Final score", "How felt, how far, how high (from KP)", "Audience reaction", "Referee decision"], answer: 1 },
-  { id: 77, topic: "Schmidt Schema Theory (1975)", question: "Recall Schema operates:", options: ["During movement", "After movement", "BEFORE movement", "Only on failure"], answer: 2 },
-  { id: 78, topic: "Schmidt Schema Theory (1975)", question: "Recognition Schema operates:", options: ["Before", "AFTER movement (evaluation)", "Before sleep", "During warm-up"], answer: 1 },
-  { id: 79, topic: "Schmidt Schema Theory (1975)", question: "Recall Schema includes:", options: ["Outcomes + Sensory", "Initial Conditions + Response Specification", "Only score", "Only feedback"], answer: 1 },
-  { id: 80, topic: "Schmidt Schema Theory (1975)", question: "Recognition Schema includes:", options: ["Initial + Response", "Only starting position", "Response Outcomes + Sensory Consequences", "Only coach feedback"], answer: 2 },
-  { id: 81, topic: "Schmidt Schema Theory (1975)", question: "Recognition Schema updates:", options: ["Nothing", "Memory store for future reference", "Only coach's notes", "Only scoreboard"], answer: 1 },
-  { id: 82, topic: "Schmidt Schema Theory (1975)", question: "KP feeling during:", options: ["Only before", "DURING & AFTER movement", "Only after game", "During video replay"], answer: 1 },
-  { id: 83, topic: "Schmidt Schema Theory (1975)", question: "Discrete motor skill:", options: ["Never-ending", "Clear beginning & end; distinct pattern; brief", "Random", "Reflex only"], answer: 1 },
-  { id: 84, topic: "Schmidt Schema Theory (1975)", question: "Number of benefits:", options: ["3", "4", "5", "6"], answer: 1 },
-  { id: 85, topic: "Schmidt Schema Theory (1975)", question: "Schema = ______ for movement:", options: ["Blueprint", "Rulebook", "Checklist", "Contract"], answer: 0 },
-  { id: 86, topic: "Schmidt Schema Theory (1975)", question: "Schema incorporates (4):", options: ["Speed, power, strength, endurance", "Outcome, movement pattern, timing, sensory feedback", "Coach, player, ball, field", "Practice, rest, diet, sleep"], answer: 1 },
-  { id: 87, topic: "Schmidt Schema Theory (1975)", question: "Main disadvantage:", options: ["Too easy", "Limited transferability to continuous/serial", "Too sport-focused", "Ignores practice"], answer: 1 },
-  { id: 88, topic: "Schmidt Schema Theory (1975)", question: "Under pressure, decline if:", options: ["Too simple", "Not adaptable", "Too practiced", "Too frequent"], answer: 1 },
-  { id: 89, topic: "Schmidt Schema Theory (1975)", question: "Number of advantages:", options: ["3", "4", "5", "6"], answer: 2 },
-  { id: 90, topic: "Schmidt Schema Theory (1975)", question: "Number of disadvantages:", options: ["3", "4", "5", "6"], answer: 2 },
-  { id: 91, topic: "Schmidt Schema Theory (1975)", question: "Schema emphasizes for skill acquisition:", options: ["Repetition only", "Variability & sensory feedback", "No feedback", "One movement forever"], answer: 1 },
-  { id: 92, topic: "Schmidt Schema Theory (1975)", question: "Refinement through:", options: ["Rest & sleep", "Practice & feedback", "Observation only", "Genetics"], answer: 1 },
-  // TOPIC 5
-  { id: 93, topic: "Demonstration / Modelling", question: "Modelling =", options: ["Verbal only", "Demo to convey info on how to perform skill", "Reading about skill", "Imagining skill"], answer: 1 },
-  { id: 94, topic: "Demonstration / Modelling", question: "Observation Learning =", options: ["Reading textbooks", "Learning by observing someone perform skill", "Trial & error only", "No external input"], answer: 1 },
-  { id: 95, topic: "Demonstration / Modelling", question: "Who proposed model types?", options: ["Atkinson", "Fitts", "Schmidt", "Bandura"], answer: 3 },
-  { id: 96, topic: "Demonstration / Modelling", question: "4 steps (order):", options: ["Reproduction→Attention→Motivation→Retention", "Attention→Retention→Reproduction→Motivation", "Motivation→Reproduction→Retention→Attention", "Retention→Attention→Motivation→Reproduction"], answer: 1 },
-  { id: 97, topic: "Demonstration / Modelling", question: "Step 1 — Attention:", options: ["Ignore model", "Focus on model; pay attention", "Perform immediately", "Forget what seen"], answer: 1 },
-  { id: 98, topic: "Demonstration / Modelling", question: "Step 2 — Retention:", options: ["Perform immediately", "Remember/retain what observed", "Ignore what seen", "Watch without thinking"], answer: 1 },
-  { id: 99, topic: "Demonstration / Modelling", question: "Step 3 — Reproduction:", options: ["Watch again", "Perform observed behavior from memory", "Forget behavior", "Criticize model"], answer: 1 },
-  { id: 100, topic: "Demonstration / Modelling", question: "Step 4 — Motivation depends on:", options: ["Weather", "What happened to model (reinforcement/punishment)", "Time of day", "Observer age only"], answer: 1 },
-  { id: 101, topic: "Demonstration / Modelling", question: "Number of model types:", options: ["2", "3", "4", "5"], answer: 1 },
-  { id: 102, topic: "Demonstration / Modelling", question: "Live Model:", options: ["In person", "Only in books", "Animated only", "Only describes"], answer: 0 },
-  { id: 103, topic: "Demonstration / Modelling", question: "Symbolic Model:", options: ["In person", "Characters in books, movies, TV, games, Internet", "Only verbal", "Always cartoon"], answer: 1 },
-  { id: 104, topic: "Demonstration / Modelling", question: "Verbal Model:", options: ["In person", "In movies", "Explains/describes without performing", "Coach only"], answer: 2 },
-  // TOPIC 6
-  { id: 105, topic: "Augmented Feedback", question: "Augmented feedback =", options: ["Natural only", "Info in addition to inherent feedback", "Replaces natural", "Coach only"], answer: 1 },
-  { id: 106, topic: "Augmented Feedback", question: "KR =", options: ["Knowledge of Reaction", "Knowledge of Result", "Kinetic Response", "Known Reflex"], answer: 1 },
-  { id: 107, topic: "Augmented Feedback", question: "KP =", options: ["Knowledge of Practice", "Kinetic Performance", "Knowledge of Performance", "Known Pattern"], answer: 2 },
-  { id: 108, topic: "Augmented Feedback", question: "KR definition:", options: ["Movement quality info", "Externally presented info about OUTCOME", "Internal feeling", "Muscle feedback"], answer: 1 },
-  { id: 109, topic: "Augmented Feedback", question: "KP definition:", options: ["Quality/technique of movement itself", "Only final score", "External outcome", "Coach opinion only"], answer: 0 },
-  { id: 110, topic: "Augmented Feedback", question: "KR vs KP:", options: ["KR=process; KP=outcome", "KR=outcome; KP=process (how done)", "Same thing", "KR=internal; KP=external"], answer: 1 },
-  { id: 111, topic: "Augmented Feedback", question: "KR measured by (4):", options: ["Speed, power, agility, flexibility", "Distance, Time, Successful attempts, Score", "Height, weight, age, gender", "Effort, attitude, attendance, uniform"], answer: 1 },
-  { id: 112, topic: "Augmented Feedback", question: "KR example — handball:", options: ["Good technique", "You shot the ball into the goal", "Bend elbow more", "Good follow-through"], answer: 1 },
-  { id: 113, topic: "Augmented Feedback", question: "KR example — football:", options: ["Perfect technique", "You missed the penalty kick", "Run-up too long", "Point your toe"], answer: 1 },
-  { id: 114, topic: "Augmented Feedback", question: "2 roles of augmented feedback:", options: ["Punish & rank", "Facilitate goal achievement & motivate learner", "Replace practice & coaches", "Record scores & manage teams"], answer: 1 },
-  { id: 115, topic: "Augmented Feedback", question: "Traditional frequency:", options: ["0%", "50%", "100% (every trial)", "<100%"], answer: 2 },
-  { id: 116, topic: "Augmented Feedback", question: "Contemporary frequency:", options: ["100%", "0%", "<100% enhances learning", "200%"], answer: 2 },
-  { id: 117, topic: "Augmented Feedback", question: "Winstein & Schmidt year:", options: ["1968", "1975", "1990", "2000"], answer: 2 },
-  { id: 118, topic: "Augmented Feedback", question: "Winstein & Schmidt finding:", options: ["100% best", "Reduced KR enhances motor skill learning", "No effect", "Only verbal works"], answer: 1 },
-  { id: 119, topic: "Augmented Feedback", question: "Winstein & Schmidt journal:", options: ["Nature", "JEP: Learning, Memory & Cognition, 16, 677–691", "Science", "The Lancet"], answer: 1 },
-  { id: 120, topic: "Augmented Feedback", question: "Number of feedback content issues:", options: ["2", "3", "4", "5"], answer: 2 },
-  { id: 121, topic: "Augmented Feedback", question: "NOT a feedback content issue:", options: ["Errors vs correct", "KR vs KP", "Qualitative vs Quantitative", "Coach's salary"], answer: 3 },
-  { id: 122, topic: "Augmented Feedback", question: "Error-size feedback is:", options: ["Measurement tool", "One of 4 content issues", "Learning stage", "Model type"], answer: 1 },
+  { id:1,topic:"Motor Skills & Classification",question:"Which motor skill type involves large muscle groups and whole body movement?",options:["Gross Motor Skills","Fine Motor Skills","Cognitive Motor Skills","Reflexive Motor Skills"],answer:0 },
+  { id:2,topic:"Motor Skills & Classification",question:"Running, jumping, and throwing are examples of which motor skill type?",options:["Fine Motor Skills","Cognitive Motor Skills","Gross Motor Skills","Serial Motor Skills"],answer:2 },
+  { id:3,topic:"Motor Skills & Classification",question:"Which motor skill type involves small muscles and requires precision and dexterity?",options:["Gross Motor Skills","Fine Motor Skills","Cognitive Motor Skills","Continuous Motor Skills"],answer:1 },
+  { id:4,topic:"Motor Skills & Classification",question:"Writing, drawing, and using utensils are examples of which motor skill type?",options:["Gross Motor Skills","Cognitive Motor Skills","Fine Motor Skills","Discrete Motor Skills"],answer:2 },
+  { id:5,topic:"Motor Skills & Classification",question:"Which motor skill type integrates thinking and movement?",options:["Gross Motor Skills","Fine Motor Skills","Reflexive Motor Skills","Cognitive Motor Skills"],answer:3 },
+  { id:6,topic:"Motor Skills & Classification",question:"Cognitive motor skills involve:",options:["Strength and balance only","Problem-solving, decision-making, and strategic planning","Running and jumping only","Reflex actions only"],answer:1 },
+  { id:7,topic:"Motor Skills & Classification",question:"Why classify motor skills?",options:["Academic research only","Design interventions & guide teaching strategies for physical development","Professional athletes only","Replace physical education"],answer:1 },
+  { id:8,topic:"Motor Skills & Classification",question:"Which is a FINE motor skill?",options:["Running a marathon","Writing a letter","Jumping over a hurdle","Kicking a soccer ball"],answer:1 },
+  { id:9,topic:"Atkinson & Shiffrin (1968)",question:"When did Atkinson & Shiffrin propose their multi-store memory model?",options:["1975","1968","1990","1958"],answer:1 },
+  { id:10,topic:"Atkinson & Shiffrin (1968)",question:"What type of model is Atkinson & Shiffrin's theory?",options:["Single-store model","Dual-store model","Multi-store model (multi-stage theory)","Working memory model"],answer:2 },
+  { id:11,topic:"Atkinson & Shiffrin (1968)",question:"Memory is best defined as:",options:["Short-term recall only","Record of experiences; storehouse of mind; storage of learned info for retrieval & future use","Ability to think quickly","A physical muscle in the brain"],answer:1 },
+  { id:12,topic:"Atkinson & Shiffrin (1968)",question:"Richard Atkinson was born:",options:["March 13, 1942","March 19, 1929","January 1, 1930","March 19, 1942"],answer:1 },
+  { id:13,topic:"Atkinson & Shiffrin (1968)",question:"Richard Shiffrin was born:",options:["March 19, 1929","March 13, 1942","January 13, 1945","March 13, 1938"],answer:1 },
+  { id:14,topic:"Atkinson & Shiffrin (1968)",question:"Shiffrin was a professor at:",options:["Harvard","Stanford","Indiana University, Bloomington","Yale"],answer:2 },
+  { id:15,topic:"Atkinson & Shiffrin (1968)",question:"Correct order of the 3 memory stores:",options:["LTM → STM → Sensory","Sensory → LTM → STM","STM → Sensory → LTM","Sensory → STM → LTM"],answer:3 },
+  { id:16,topic:"Atkinson & Shiffrin (1968)",question:"Sensory memory duration:",options:["1–5 sec","15–30 sec","1–2 min","Unlimited"],answer:1 },
+  { id:17,topic:"Atkinson & Shiffrin (1968)",question:"Sensory memory capacity:",options:["Unlimited","3 ± 1 items","7 ± 2 items","10 ± 3 items"],answer:2 },
+  { id:18,topic:"Atkinson & Shiffrin (1968)",question:"LTM duration & capacity:",options:["Limited duration, unlimited capacity","Unlimited duration & unlimited capacity","Unlimited duration, limited capacity","Both limited"],answer:1 },
+  { id:19,topic:"Atkinson & Shiffrin (1968)",question:"Info stored in LTM as:",options:["Memory trace","Sensory snapshot","Neural spark","Temporary buffer"],answer:0 },
+  { id:20,topic:"Atkinson & Shiffrin (1968)",question:"The 3 stages of memory process:",options:["Encoding → Storage → Retrieval","Attention → Retention → Recall","Input → Process → Output","Sensory → Working → Permanent"],answer:0 },
+  { id:21,topic:"Atkinson & Shiffrin (1968)",question:"Encoding =",options:["Retention over time","Getting info out of storage","Processing info into memory system","Forgetting irrelevant info"],answer:2 },
+  { id:22,topic:"Atkinson & Shiffrin (1968)",question:"Storage =",options:["Processing into memory","Retention of encoded material over time","Getting info out of storage","Deletion of old memories"],answer:1 },
+  { id:23,topic:"Atkinson & Shiffrin (1968)",question:"Retrieval =",options:["Processing into memory","Retention over time","Getting info out of storage for application","Fading of memory traces"],answer:2 },
+  { id:24,topic:"Atkinson & Shiffrin (1968)",question:"Forgetting =",options:["Never encoding info","Apparent loss/modification of stored info; spontaneous/gradual process","Inability to pay attention","Intentional deletion of all memories"],answer:1 },
+  { id:25,topic:"Atkinson & Shiffrin (1968)",question:"How many causes of forgetting?",options:["3","4","5","6"],answer:2 },
+  { id:26,topic:"Atkinson & Shiffrin (1968)",question:"NOT a cause of forgetting:",options:["Interference","Encoding Failure","Over-rehearsal","Decay"],answer:2 },
+  { id:27,topic:"Atkinson & Shiffrin (1968)",question:"Retroactive interference:",options:["Old disrupts new","New disrupts recall of old","Information decays","Never encoded"],answer:1 },
+  { id:28,topic:"Atkinson & Shiffrin (1968)",question:"Proactive interference:",options:["Old memories disrupt new learning","New disrupts old","Deliberate forgetting","Memory trace fades"],answer:0 },
+  { id:29,topic:"Atkinson & Shiffrin (1968)",question:"Walker & Williams (2008) — subjects:",options:["10 + 10","12 experienced + 12 inexperienced","15 + 15","20 + 20"],answer:1 },
+  { id:30,topic:"Atkinson & Shiffrin (1968)",question:"Walker & Williams (2008) — clip duration:",options:["5 sec","10 sec","15 sec","30 sec"],answer:1 },
+  { id:31,topic:"Atkinson & Shiffrin (1968)",question:"Walker & Williams — experts had better recall on:",options:["Unstructured only","Both equally","Structured trials only","Neither"],answer:2 },
+  { id:32,topic:"Atkinson & Shiffrin (1968)",question:"Baddeley (1975) studied:",options:["Children's memory","Diving context effect — better recall in matching context","Music effect on memory","Memory decay"],answer:1 },
+  { id:33,topic:"Atkinson & Shiffrin (1968)",question:"Baddeley (1975) — recall better when:",options:["Contexts matched","On land only","In water only","No context effect"],answer:0 },
+  { id:34,topic:"Atkinson & Shiffrin (1968)",question:"STM capacity:",options:["Unlimited","Limited","Depends on person","Cannot be measured"],answer:1 },
+  { id:35,topic:"Atkinson & Shiffrin (1968)",question:"Best techniques for storage & retrieval:",options:["Rote only","Chunking, Mnemonic Devices, Rehearsal","Ignore attention limits","Lectures without breaks"],answer:1 },
+  { id:36,topic:"Atkinson & Shiffrin (1968)",question:"Educational — two memory types:",options:["Sensory & Motor","Implicit & Explicit Memory","Short & Long","Visual & Auditory"],answer:1 },
+  { id:37,topic:"Atkinson & Shiffrin (1968)",question:"Walker & Williams screen size:",options:["1.0 m²","2.5 m²","3.65 m²","5.0 m²"],answer:2 },
+  { id:38,topic:"Atkinson & Shiffrin (1968)",question:"Atkinson's fields:",options:["Only psychology","Psychology, cognitive science, academic administration","Only sports science","Physics & math"],answer:1 },
+  { id:39,topic:"Atkinson & Shiffrin (1968)",question:"Experts' memory advantage:",options:["Simpler LTM","More complex & discriminating LTM; better task-specific encoding","Same as novices","Worse than novices"],answer:1 },
+  { id:40,topic:"Atkinson & Shiffrin (1968)",question:"How many criticisms?",options:["3","4","5","2"],answer:1 },
+  { id:41,topic:"Atkinson & Shiffrin (1968)",question:"NOT a criticism:",options:["Oversimplified","Assumes stores independent","No memory distortion explanation","Overemphasizes emotion"],answer:3 },
+  { id:42,topic:"Fitts & Posner Stages",question:"Motor learning =",options:["Simple repetition","Brain process → practice → CNS changes → new motor skill","Only physical training","Innate unchangeable ability"],answer:1 },
+  { id:43,topic:"Fitts & Posner Stages",question:"Fitts & Posner focuses on:",options:["Only physical aspects","Attentional demands + practice time to reach each stage","Only cognition","Genetics"],answer:1 },
+  { id:44,topic:"Fitts & Posner Stages",question:"Number of stages:",options:["2","3","4","5"],answer:1 },
+  { id:45,topic:"Fitts & Posner Stages",question:"Stage 1:",options:["Autonomous","Associative","Cognitive","Reflexive"],answer:2 },
+  { id:46,topic:"Fitts & Posner Stages",question:"Stage 2:",options:["Cognitive","Associative","Autonomous","Preparatory"],answer:1 },
+  { id:47,topic:"Fitts & Posner Stages",question:"Stage 3:",options:["Cognitive","Associative","Autonomous","Mastery"],answer:2 },
+  { id:48,topic:"Fitts & Posner Stages",question:"Cognitive — movement is:",options:["Fully automatic","Broken into sequence; step-by-step","Highly fluent","Thoughtless"],answer:1 },
+  { id:49,topic:"Fitts & Posner Stages",question:"Cognitive — control:",options:["Automatic","Conscious control","Reflexive","None"],answer:1 },
+  { id:50,topic:"Fitts & Posner Stages",question:"LARGEST variation & error:",options:["Autonomous","Associative","Cognitive","All equal"],answer:2 },
+  { id:51,topic:"Fitts & Posner Stages",question:"Associative — movement:",options:["More fluent","More errors","Fully automatic","Uncontrollable"],answer:0 },
+  { id:52,topic:"Fitts & Posner Stages",question:"Associative — working memory:",options:["Increases","Stays same","Decreases","Eliminated"],answer:2 },
+  { id:53,topic:"Fitts & Posner Stages",question:"Associative requires:",options:["No practice","Deliberate practice","Observation only","Innate talent"],answer:1 },
+  { id:54,topic:"Fitts & Posner Stages",question:"Autonomous — cognitive effort:",options:["Maximum","Moderate","Minimal","Variable"],answer:2 },
+  { id:55,topic:"Fitts & Posner Stages",question:"Autonomous — what improves?",options:["Error rate","Anticipation & decision-making","Need for feedback","Working memory reliance"],answer:1 },
+  { id:56,topic:"Fitts & Posner Stages",question:"Autonomous — error detection:",options:["Disappears","Greater ability","Same as Cognitive","Not relevant"],answer:1 },
+  { id:57,topic:"Fitts & Posner Stages",question:"HIGHEST accuracy:",options:["Cognitive","Associative","Autonomous","Pre-learning"],answer:2 },
+  { id:58,topic:"Fitts & Posner Stages",question:"Cognitive summary:",options:["Improving technique","High accuracy","Learning new skill — 'Learn from basic'","Mastery"],answer:2 },
+  { id:59,topic:"Fitts & Posner Stages",question:"Associative summary:",options:["Learning new skill","Improving technique — 'PRACTICE!!'","High accuracy","No improvement"],answer:1 },
+  { id:60,topic:"Fitts & Posner Stages",question:"Autonomous summary:",options:["Learning new skill","Practicing basics","High accuracy & consistency — 'I AM PRO!!'","Starting from scratch"],answer:2 },
+  { id:61,topic:"Fitts & Posner Stages",question:"Ahmad Jr (first shooting lesson):",options:["Autonomous","Associative","Cognitive","Beyond stages"],answer:2 },
+  { id:62,topic:"Fitts & Posner Stages",question:"Khaled (30 min practice for team):",options:["Cognitive","Associative","Autonomous","Pre-learning"],answer:1 },
+  { id:63,topic:"Fitts & Posner Stages",question:"Ronaldo (scoring 2-0 for Portugal):",options:["Cognitive","Associative","Autonomous","Never reached any stage"],answer:2 },
+  { id:64,topic:"Fitts & Posner Stages",question:"Error trend across stages:",options:["Increase","Stay same","Decrease (large → high accuracy)","Disappear at Associative"],answer:2 },
+  { id:65,topic:"Schmidt Schema Theory (1975)",question:"Who proposed Schema Theory?",options:["Richard Atkinson","Richard Shiffrin","Richard A. Schmidt","Albert Bandura"],answer:2 },
+  { id:66,topic:"Schmidt Schema Theory (1975)",question:"Year:",options:["1968","1975","1990","1980"],answer:1 },
+  { id:67,topic:"Schmidt Schema Theory (1975)",question:"Schema Theory is for:",options:["Continuous skills","Serial skills","Discrete motor skills","All equally"],answer:2 },
+  { id:68,topic:"Schmidt Schema Theory (1975)",question:"Movement info stored in:",options:["STM only","LTM in the brain","Muscles","Spinal cord"],answer:1 },
+  { id:69,topic:"Schmidt Schema Theory (1975)",question:"More practice → larger programme →",options:["Slower adaptation","Easier adaptation to new situations","No change","More errors"],answer:1 },
+  { id:70,topic:"Schmidt Schema Theory (1975)",question:"Sports examples:",options:["Swimming & cycling","Long passing in netball & throwing in softball","Running & jumping","Gymnastics & diving"],answer:1 },
+  { id:71,topic:"Schmidt Schema Theory (1975)",question:"STM stores ___ things during movement:",options:["2","3","4","5"],answer:2 },
+  { id:72,topic:"Schmidt Schema Theory (1975)",question:"NOT one of the 4 things stored:",options:["Initial Conditions","Response Selection","Response Outcomes","Genetic Predisposition"],answer:3 },
+  { id:73,topic:"Schmidt Schema Theory (1975)",question:"Initial Conditions:",options:["Only weather","Position, fatigue, goal, opposition, teammates","Only score","Only coach's instructions"],answer:1 },
+  { id:74,topic:"Schmidt Schema Theory (1975)",question:"Response Selection:",options:["Type of skill; how fast/hard; where teammates?","Final score only","Coach's decision","Random actions"],answer:0 },
+  { id:75,topic:"Schmidt Schema Theory (1975)",question:"Response Outcomes =",options:["Weather","Success or Failure (from KR)","Coach's mood","Uniform color"],answer:1 },
+  { id:76,topic:"Schmidt Schema Theory (1975)",question:"Sensory Consequences =",options:["Final score","How felt, how far, how high (from KP)","Audience reaction","Referee decision"],answer:1 },
+  { id:77,topic:"Schmidt Schema Theory (1975)",question:"Recall Schema operates:",options:["During movement","After movement","BEFORE movement","Only on failure"],answer:2 },
+  { id:78,topic:"Schmidt Schema Theory (1975)",question:"Recognition Schema operates:",options:["Before","AFTER movement (evaluation)","Before sleep","During warm-up"],answer:1 },
+  { id:79,topic:"Schmidt Schema Theory (1975)",question:"Recall Schema includes:",options:["Outcomes + Sensory","Initial Conditions + Response Specification","Only score","Only feedback"],answer:1 },
+  { id:80,topic:"Schmidt Schema Theory (1975)",question:"Recognition Schema includes:",options:["Initial + Response","Only starting position","Response Outcomes + Sensory Consequences","Only coach feedback"],answer:2 },
+  { id:81,topic:"Schmidt Schema Theory (1975)",question:"Recognition Schema updates:",options:["Nothing","Memory store for future reference","Only coach's notes","Only scoreboard"],answer:1 },
+  { id:82,topic:"Schmidt Schema Theory (1975)",question:"KP feeling during:",options:["Only before","DURING & AFTER movement","Only after game","During video replay"],answer:1 },
+  { id:83,topic:"Schmidt Schema Theory (1975)",question:"Discrete motor skill:",options:["Never-ending","Clear beginning & end; distinct pattern; brief","Random","Reflex only"],answer:1 },
+  { id:84,topic:"Schmidt Schema Theory (1975)",question:"Number of benefits:",options:["3","4","5","6"],answer:1 },
+  { id:85,topic:"Schmidt Schema Theory (1975)",question:"Schema = ______ for movement:",options:["Blueprint","Rulebook","Checklist","Contract"],answer:0 },
+  { id:86,topic:"Schmidt Schema Theory (1975)",question:"Schema incorporates (4):",options:["Speed, power, strength, endurance","Outcome, movement pattern, timing, sensory feedback","Coach, player, ball, field","Practice, rest, diet, sleep"],answer:1 },
+  { id:87,topic:"Schmidt Schema Theory (1975)",question:"Main disadvantage:",options:["Too easy","Limited transferability to continuous/serial","Too sport-focused","Ignores practice"],answer:1 },
+  { id:88,topic:"Schmidt Schema Theory (1975)",question:"Under pressure, decline if:",options:["Too simple","Not adaptable","Too practiced","Too frequent"],answer:1 },
+  { id:89,topic:"Schmidt Schema Theory (1975)",question:"Number of advantages:",options:["3","4","5","6"],answer:2 },
+  { id:90,topic:"Schmidt Schema Theory (1975)",question:"Number of disadvantages:",options:["3","4","5","6"],answer:2 },
+  { id:91,topic:"Schmidt Schema Theory (1975)",question:"Schema emphasizes for skill acquisition:",options:["Repetition only","Variability & sensory feedback","No feedback","One movement forever"],answer:1 },
+  { id:92,topic:"Schmidt Schema Theory (1975)",question:"Refinement through:",options:["Rest & sleep","Practice & feedback","Observation only","Genetics"],answer:1 },
+  { id:93,topic:"Demonstration / Modelling",question:"Modelling =",options:["Verbal only","Demo to convey info on how to perform skill","Reading about skill","Imagining skill"],answer:1 },
+  { id:94,topic:"Demonstration / Modelling",question:"Observation Learning =",options:["Reading textbooks","Learning by observing someone perform skill","Trial & error only","No external input"],answer:1 },
+  { id:95,topic:"Demonstration / Modelling",question:"Who proposed model types?",options:["Atkinson","Fitts","Schmidt","Bandura"],answer:3 },
+  { id:96,topic:"Demonstration / Modelling",question:"4 steps (order):",options:["Reproduction→Attention→Motivation→Retention","Attention→Retention→Reproduction→Motivation","Motivation→Reproduction→Retention→Attention","Retention→Attention→Motivation→Reproduction"],answer:1 },
+  { id:97,topic:"Demonstration / Modelling",question:"Step 1 — Attention:",options:["Ignore model","Focus on model; pay attention","Perform immediately","Forget what seen"],answer:1 },
+  { id:98,topic:"Demonstration / Modelling",question:"Step 2 — Retention:",options:["Perform immediately","Remember/retain what observed","Ignore what seen","Watch without thinking"],answer:1 },
+  { id:99,topic:"Demonstration / Modelling",question:"Step 3 — Reproduction:",options:["Watch again","Perform observed behavior from memory","Forget behavior","Criticize model"],answer:1 },
+  { id:100,topic:"Demonstration / Modelling",question:"Step 4 — Motivation depends on:",options:["Weather","What happened to model (reinforcement/punishment)","Time of day","Observer age only"],answer:1 },
+  { id:101,topic:"Demonstration / Modelling",question:"Number of model types:",options:["2","3","4","5"],answer:1 },
+  { id:102,topic:"Demonstration / Modelling",question:"Live Model:",options:["In person","Only in books","Animated only","Only describes"],answer:0 },
+  { id:103,topic:"Demonstration / Modelling",question:"Symbolic Model:",options:["In person","Characters in books, movies, TV, games, Internet","Only verbal","Always cartoon"],answer:1 },
+  { id:104,topic:"Demonstration / Modelling",question:"Verbal Model:",options:["In person","In movies","Explains/describes without performing","Coach only"],answer:2 },
+  { id:105,topic:"Augmented Feedback",question:"Augmented feedback =",options:["Natural only","Info in addition to inherent feedback","Replaces natural","Coach only"],answer:1 },
+  { id:106,topic:"Augmented Feedback",question:"KR =",options:["Knowledge of Reaction","Knowledge of Result","Kinetic Response","Known Reflex"],answer:1 },
+  { id:107,topic:"Augmented Feedback",question:"KP =",options:["Knowledge of Practice","Kinetic Performance","Knowledge of Performance","Known Pattern"],answer:2 },
+  { id:108,topic:"Augmented Feedback",question:"KR definition:",options:["Movement quality info","Externally presented info about OUTCOME","Internal feeling","Muscle feedback"],answer:1 },
+  { id:109,topic:"Augmented Feedback",question:"KP definition:",options:["Quality/technique of movement itself","Only final score","External outcome","Coach opinion only"],answer:0 },
+  { id:110,topic:"Augmented Feedback",question:"KR vs KP:",options:["KR=process; KP=outcome","KR=outcome; KP=process (how done)","Same thing","KR=internal; KP=external"],answer:1 },
+  { id:111,topic:"Augmented Feedback",question:"KR measured by (4):",options:["Speed, power, agility, flexibility","Distance, Time, Successful attempts, Score","Height, weight, age, gender","Effort, attitude, attendance, uniform"],answer:1 },
+  { id:112,topic:"Augmented Feedback",question:"KR example — handball:",options:["Good technique","You shot the ball into the goal","Bend elbow more","Good follow-through"],answer:1 },
+  { id:113,topic:"Augmented Feedback",question:"KR example — football:",options:["Perfect technique","You missed the penalty kick","Run-up too long","Point your toe"],answer:1 },
+  { id:114,topic:"Augmented Feedback",question:"2 roles of augmented feedback:",options:["Punish & rank","Facilitate goal achievement & motivate learner","Replace practice & coaches","Record scores & manage teams"],answer:1 },
+  { id:115,topic:"Augmented Feedback",question:"Traditional frequency:",options:["0%","50%","100% (every trial)","<100%"],answer:2 },
+  { id:116,topic:"Augmented Feedback",question:"Contemporary frequency:",options:["100%","0%","<100% enhances learning","200%"],answer:2 },
+  { id:117,topic:"Augmented Feedback",question:"Winstein & Schmidt year:",options:["1968","1975","1990","2000"],answer:2 },
+  { id:118,topic:"Augmented Feedback",question:"Winstein & Schmidt finding:",options:["100% best","Reduced KR enhances motor skill learning","No effect","Only verbal works"],answer:1 },
+  { id:119,topic:"Augmented Feedback",question:"Winstein & Schmidt journal:",options:["Nature","JEP: Learning, Memory & Cognition, 16, 677–691","Science","The Lancet"],answer:1 },
+  { id:120,topic:"Augmented Feedback",question:"Number of feedback content issues:",options:["2","3","4","5"],answer:2 },
+  { id:121,topic:"Augmented Feedback",question:"NOT a feedback content issue:",options:["Errors vs correct","KR vs KP","Qualitative vs Quantitative","Coach's salary"],answer:3 },
+  { id:122,topic:"Augmented Feedback",question:"Error-size feedback is:",options:["Measurement tool","One of 4 content issues","Learning stage","Model type"],answer:1 },
 ];
 
-// ============ STATE ============
-const STORAGE_KEY = 'pqo7005_mcq_practice';
-const AUTO_DELAY = 800; // ms before auto-advance
+const STORAGE_KEY = 'pqo7005_mcq_practice_v2';
+const AUTO_DELAY = 800;
 let state, currentQuestionIndex = 0, filteredQuestions = [], answeredThisRound = false, autoAdvanceTimer = null;
 
-function defaultState() { return { wrongIds: {}, correctIds: {}, currentTopic: 'all', questionOrder: [], theme: 'light' }; }
-function loadState() { try { const raw = localStorage.getItem(STORAGE_KEY); if (raw) return { ...defaultState(), ...JSON.parse(raw) }; } catch(e) {} return defaultState(); }
+function defaultState() { return { wrongIds:{}, correctIds:{}, currentTopic:'all', questionOrder:[], theme:'light', font:'medium' }; }
+function loadState() { try { const raw=localStorage.getItem(STORAGE_KEY); if(raw) return {...defaultState(),...JSON.parse(raw)}; } catch(e){} return defaultState(); }
 function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 
-// ============ THEME ============
-function setTheme(t) {
-  state.theme = t;
-  document.documentElement.setAttribute('data-theme', t);
-  document.getElementById('themeLight').classList.toggle('active', t === 'light');
-  document.getElementById('themeDark').classList.toggle('active', t === 'dark');
-  saveState();
-}
-function initTheme() {
-  const saved = state.theme || 'light';
-  setTheme(saved);
-}
+function setTheme(t) { state.theme=t; document.documentElement.setAttribute('data-theme',t); document.getElementById('tl').classList.toggle('active',t==='light'); document.getElementById('td').classList.toggle('active',t==='dark'); saveState(); }
+function setFont(f) { state.font=f; document.documentElement.setAttribute('data-font',f); document.getElementById('fs').classList.toggle('active',f==='small'); document.getElementById('fm').classList.toggle('active',f==='medium'); document.getElementById('fl').classList.toggle('active',f==='large'); saveState(); }
+function initSettings() { setTheme(state.theme||'light'); setFont(state.font||'medium'); }
 
-// ============ HELPERS ============
-function getFilteredQuestions() {
-  if (state.currentTopic === 'all') return [...QUESTIONS];
-  if (state.currentTopic === 'wrong') return QUESTIONS.filter(q => state.wrongIds[q.id]);
-  return QUESTIONS.filter(q => q.topic === state.currentTopic);
-}
-function getWrongQuestions() { return QUESTIONS.filter(q => state.wrongIds[q.id]); }
-function getTopicList() { return [...new Set(QUESTIONS.map(q => q.topic))]; }
-function shuffleArray(arr) { const a = [...arr]; for (let i = a.length-1; i>0; i--) { const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function getFilteredQuestions() { if(state.currentTopic==='all') return [...QUESTIONS]; if(state.currentTopic==='wrong') return QUESTIONS.filter(q=>state.wrongIds[q.id]); return QUESTIONS.filter(q=>q.topic===state.currentTopic); }
+function getWrongQuestions() { return QUESTIONS.filter(q=>state.wrongIds[q.id]); }
+function getTopicList() { return [...new Set(QUESTIONS.map(q=>q.topic))]; }
+function shuffleArray(arr) { const a=[...arr]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
 
-// ============ RENDER ============
 function buildTopicNav() {
-  const nav = document.getElementById('topicNav');
-  const topics = getTopicList();
-  let html = `<button class="topic-btn all-active" onclick="selectTopic('all')">📚 All (${QUESTIONS.length})</button>`;
-  topics.forEach(t => {
-    const count = QUESTIONS.filter(q => q.topic === t).length;
-    const active = state.currentTopic === t ? ' active' : '';
-    const short = t.length > 22 ? t.substring(0, 20) + '…' : t;
-    html += `<button class="topic-btn${active}" onclick="selectTopic('${t}')">${short} (${count})</button>`;
-  });
-  const wc = getWrongQuestions().length;
-  const wa = state.currentTopic === 'wrong' ? ' active' : '';
-  html += `<button class="topic-btn${wa}" onclick="selectTopic('wrong')" style="border-color:#f87171;color:#f87171;">❌ Wrong (${wc})</button>`;
-  nav.innerHTML = html;
+  const nav=document.getElementById('topicNav'); const topics=getTopicList();
+  let html=`<button class="topic-btn all-active" onclick="selectTopic('all')">📚 All (${QUESTIONS.length})</button>`;
+  topics.forEach(t=>{const count=QUESTIONS.filter(q=>q.topic===t).length;const active=state.currentTopic===t?' active':'';html+=`<button class="topic-btn${active}" onclick="selectTopic('${t}')">${t.substring(0,22)} (${count})</button>`;});
+  const wc=getWrongQuestions().length; const wa=state.currentTopic==='wrong'?' active':'';
+  html+=`<button class="topic-btn${wa}" onclick="selectTopic('wrong')" style="border-color:#f87171;color:#f87171;">❌ Wrong (${wc})</button>`;
+  nav.innerHTML=html;
 }
 
 function updateStats() {
-  const f = getFilteredQuestions();
-  document.getElementById('statTotal').textContent = f.length;
-  document.getElementById('statCorrect').textContent = f.filter(q => state.correctIds[q.id]).length;
-  document.getElementById('statWrong').textContent = f.filter(q => state.wrongIds[q.id]).length;
-  document.getElementById('statRemaining').textContent = Math.max(0, f.length - f.filter(q => state.correctIds[q.id] || state.wrongIds[q.id]).length);
-  document.getElementById('wrongCountNav').textContent = getWrongQuestions().length;
-  const answered = QUESTIONS.filter(q => state.correctIds[q.id] || state.wrongIds[q.id]).length;
-  document.getElementById('progressBar').style.width = (answered / QUESTIONS.length * 100) + '%';
+  const f=getFilteredQuestions();
+  document.getElementById('statTotal').textContent=f.length;
+  document.getElementById('statCorrect').textContent=f.filter(q=>state.correctIds[q.id]).length;
+  document.getElementById('statWrong').textContent=f.filter(q=>state.wrongIds[q.id]).length;
+  document.getElementById('statRemaining').textContent=Math.max(0,f.length-f.filter(q=>state.correctIds[q.id]||state.wrongIds[q.id]).length);
+  document.getElementById('wrongCountNav').textContent=getWrongQuestions().length;
+  document.getElementById('progressBar').style.width=(QUESTIONS.filter(q=>state.correctIds[q.id]||state.wrongIds[q.id]).length/QUESTIONS.length*100)+'%';
 }
 
-function selectTopic(topic) {
-  state.currentTopic = topic; state.questionOrder = []; currentQuestionIndex = 0; answeredThisRound = false; filteredQuestions = getFilteredQuestions();
-  saveState(); buildTopicNav(); updateStats();
-  document.getElementById('reviewSection').style.display = 'none';
-  if (filteredQuestions.length === 0) {
-    document.getElementById('quizArea').innerHTML = `<div class="empty-state"><div class="icon">🎉</div><p>${topic==='wrong'?'No wrong answers! 🎉':'No questions here.'}</p></div>`;
-  } else { showQuestion(); }
-}
-
+function selectTopic(topic) { state.currentTopic=topic; state.questionOrder=[]; currentQuestionIndex=0; answeredThisRound=false; filteredQuestions=getFilteredQuestions(); saveState(); buildTopicNav(); updateStats(); document.getElementById('reviewSection').style.display='none'; if(filteredQuestions.length===0){document.getElementById('quizArea').innerHTML=`<div class="empty-state"><div class="icon">🎉</div><p>${topic==='wrong'?'No wrong answers! 🎉':'No questions here.'}</p></div>`;}else{showQuestion();} }
 function showQuestion() {
-  filteredQuestions = getFilteredQuestions();
-  if (filteredQuestions.length === 0) {
-    document.getElementById('quizArea').innerHTML = `<div class="empty-state"><div class="icon">🎉</div><p>All done! Pick another topic or reset.</p></div>`;
-    return;
-  }
-  if (state.questionOrder.length === 0) state.questionOrder = shuffleArray([...Array(filteredQuestions.length).keys()]);
-  if (currentQuestionIndex >= filteredQuestions.length) { currentQuestionIndex = 0; state.questionOrder = shuffleArray([...Array(filteredQuestions.length).keys()]); }
-  const q = filteredQuestions[state.questionOrder[currentQuestionIndex]];
-  answeredThisRound = false;
-  if (autoAdvanceTimer) { clearTimeout(autoAdvanceTimer); autoAdvanceTimer = null; }
-  const optOrder = shuffleArray([0,1,2,3]);
-  document.getElementById('qTopic').textContent = q.topic;
-  document.getElementById('qNum').textContent = `${currentQuestionIndex+1} / ${filteredQuestions.length}`;
-  document.getElementById('qText').textContent = q.question;
-  let oh = '';
-  optOrder.forEach((oi, di) => { oh += `<div class="option" data-original="${oi}" data-label="${String.fromCharCode(65+di)}" onclick="selectAnswer(this,${oi})">${String.fromCharCode(65+di)}. ${q.options[oi]}</div>`; });
-  document.getElementById('options').innerHTML = oh;
-  document.getElementById('feedback').style.display = 'none';
-  // If previously correct, show it
-  if (state.correctIds[q.id]) {
-    document.querySelectorAll('.option').forEach(o => {
-      if (parseInt(o.dataset.original) === q.answer) o.classList.add('correct-reveal');
-      o.style.pointerEvents = 'none';
-    });
-    document.getElementById('feedback').style.display = 'block';
-    document.getElementById('feedback').className = 'feedback-flash correct';
-    document.getElementById('feedback').textContent = '✅ Correct (previously)';
-    answeredThisRound = true;
-    autoAdvanceTimer = setTimeout(() => nextQuestion(), AUTO_DELAY);
-  }
+  filteredQuestions=getFilteredQuestions();
+  if(filteredQuestions.length===0){document.getElementById('quizArea').innerHTML=`<div class="empty-state"><div class="icon">🎉</div><p>All done! Pick another topic or reset.</p></div>`;return;}
+  if(state.questionOrder.length===0) state.questionOrder=shuffleArray([...Array(filteredQuestions.length).keys()]);
+  if(currentQuestionIndex>=filteredQuestions.length){currentQuestionIndex=0;state.questionOrder=shuffleArray([...Array(filteredQuestions.length).keys()]);}
+  const q=filteredQuestions[state.questionOrder[currentQuestionIndex]]; answeredThisRound=false;
+  if(autoAdvanceTimer){clearTimeout(autoAdvanceTimer);autoAdvanceTimer=null;}
+  const optOrder=shuffleArray([0,1,2,3]);
+  document.getElementById('qTopic').textContent=q.topic;
+  document.getElementById('qNum').textContent=`${currentQuestionIndex+1} / ${filteredQuestions.length}`;
+  document.getElementById('qText').textContent=q.question;
+  let oh=''; optOrder.forEach((oi,di)=>{oh+=`<div class="option" data-original="${oi}" data-label="${String.fromCharCode(65+di)}" onclick="selectAnswer(this,${oi})">${String.fromCharCode(65+di)}. ${q.options[oi]}</div>`;});
+  document.getElementById('options').innerHTML=oh;
+  document.getElementById('feedback').style.display='none';
+  if(state.correctIds[q.id]){document.querySelectorAll('.option').forEach(o=>{if(parseInt(o.dataset.original)===q.answer)o.classList.add('correct-reveal');o.style.pointerEvents='none';});document.getElementById('feedback').style.display='block';document.getElementById('feedback').className='feedback-flash correct';document.getElementById('feedback').textContent='✅ Correct (previously)';answeredThisRound=true;autoAdvanceTimer=setTimeout(()=>nextQuestion(),AUTO_DELAY);}
 }
-
-function selectAnswer(el, chosen) {
-  if (answeredThisRound) return;
-  answeredThisRound = true;
-  if (autoAdvanceTimer) { clearTimeout(autoAdvanceTimer); autoAdvanceTimer = null; }
-  const q = filteredQuestions[state.questionOrder[currentQuestionIndex]];
-  const allOpts = document.querySelectorAll('.option');
-  allOpts.forEach(o => o.style.pointerEvents = 'none');
-
-  if (chosen === q.answer) {
-    el.classList.add('correct-reveal');
-    state.correctIds[q.id] = true;
-    document.getElementById('feedback').style.display = 'block';
-    document.getElementById('feedback').className = 'feedback-flash correct';
-    document.getElementById('feedback').textContent = '✅ Correct!';
-  } else {
-    el.classList.add('wrong-reveal');
-    allOpts.forEach(o => { if (parseInt(o.dataset.original) === q.answer) o.classList.add('highlight-correct'); });
-    const prev = state.wrongIds[q.id];
-    state.wrongIds[q.id] = { attempts: (prev?prev.attempts:0)+1, lastWrong: Date.now() };
-    delete state.correctIds[q.id];
-    document.getElementById('feedback').style.display = 'block';
-    document.getElementById('feedback').className = 'feedback-flash wrong';
-    document.getElementById('feedback').textContent = `❌ Wrong — Answer: ${q.options[q.answer]}`;
-  }
-  saveState(); updateStats(); buildTopicNav();
-  // AUTO-ADVANCE
-  autoAdvanceTimer = setTimeout(() => nextQuestion(), AUTO_DELAY);
-}
-
-function nextQuestion() {
-  if (autoAdvanceTimer) { clearTimeout(autoAdvanceTimer); autoAdvanceTimer = null; }
-  currentQuestionIndex++;
-  filteredQuestions = getFilteredQuestions();
-  if (currentQuestionIndex >= filteredQuestions.length) {
-    currentQuestionIndex = 0;
-    state.questionOrder = shuffleArray([...Array(filteredQuestions.length).keys()]);
-    showToast('🔄 Round complete. Restarting!');
-  }
-  showQuestion();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function shuffleQuestions() { state.questionOrder = []; currentQuestionIndex = 0; answeredThisRound = false; showQuestion(); showToast('🔀 Shuffled!'); }
-function resetProgress() { if (confirm('Reset ALL progress? Cannot be undone.')) { state = defaultState(); state.questionOrder = []; currentQuestionIndex = 0; answeredThisRound = false; filteredQuestions = getFilteredQuestions(); saveState(); buildTopicNav(); updateStats(); initTheme(); document.getElementById('reviewSection').style.display = 'none'; showQuestion(); showToast('🔄 All reset!'); } }
-
-function showWrongReview() {
-  const wrongQs = getWrongQuestions();
-  const section = document.getElementById('reviewSection');
-  if (wrongQs.length === 0) { section.style.display = 'block'; section.innerHTML = `<div class="empty-state"><div class="icon">🎉</div><p>No wrong answers yet!</p></div>`; section.scrollIntoView({behavior:'smooth'}); return; }
-  wrongQs.sort((a,b) => (state.wrongIds[b.id]?.lastWrong||0) - (state.wrongIds[a.id]?.lastWrong||0));
-  let html = `<div class="review-header"><h2>📋 Wrong (${wrongQs.length})</h2><button class="btn btn-danger" onclick="clearWrongAnswers()">Clear</button></div>`;
-  wrongQs.forEach(q => {
-    const info = state.wrongIds[q.id]; const attempts = info?info.attempts:1; const date = info?new Date(info.lastWrong).toLocaleString():'';
-    html += `<div class="review-item"><div class="r-topic">${q.topic}</div><div class="r-q"><b>Q:</b> ${q.question}</div><div class="r-correct">✅ ${q.options[q.answer]}</div><div class="r-attempts">Wrong ${attempts}x | ${date}</div></div>`;
-  });
-  html += `<div style="text-align:center;margin-top:10px;"><button class="btn btn-primary" onclick="selectTopic('wrong')">🔁 Practice Wrong Only</button></div>`;
-  section.style.display = 'block'; section.innerHTML = html; section.scrollIntoView({behavior:'smooth'});
-}
-
-function clearWrongAnswers() { if (confirm('Clear all wrong records?')) { state.wrongIds = {}; saveState(); buildTopicNav(); updateStats(); document.getElementById('reviewSection').style.display = 'none'; if (state.currentTopic==='wrong') selectTopic('all'); showToast('🗑️ Cleared!'); } }
-function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.className = 'toast show'; clearTimeout(t._t); t._t = setTimeout(()=>{t.className='toast';},2000); }
-
-// Keyboard
-document.addEventListener('keydown', e => {
-  if (e.key==='Enter'||e.key===' ') { e.preventDefault(); if (answeredThisRound) nextQuestion(); return; }
-  if (answeredThisRound) return;
-  const k = e.key.toUpperCase();
-  if (['A','B','C','D','1','2','3','4'].includes(k)) {
-    const idx = {A:0,B:1,C:2,D:3,'1':0,'2':1,'3':2,'4':3}[k];
-    const t = [...document.querySelectorAll('.option')].find(o => o.dataset.label === String.fromCharCode(65+idx));
-    if (t && t.style.pointerEvents!=='none') t.click();
-  }
-});
-
-// Init
-function init() {
-  state = loadState(); state.questionOrder = []; currentQuestionIndex = 0; answeredThisRound = false; filteredQuestions = getFilteredQuestions();
-  initTheme(); buildTopicNav(); updateStats();
-  if (filteredQuestions.length > 0) showQuestion();
-}
-init();
+function selectAnswer(el,chosen){if(answeredThisRound)return;answeredThisRound=true;if(autoAdvanceTimer){clearTimeout(autoAdvanceTimer);autoAdvanceTimer=null;}const q=filteredQuestions[state.questionOrder[currentQuestionIndex]];const allOpts=document.querySelectorAll('.option');allOpts.forEach(o=>o.style.pointerEvents='none');if(chosen===q.answer){el.classList.add('correct-reveal');state.correctIds[q.id]=true;document.getElementById('feedback').style.display='block';document.getElementById('feedback').className='feedback-flash correct';document.getElementById('feedback').textContent='✅ Correct!';}else{el.classList.add('wrong-reveal');allOpts.forEach(o=>{if(parseInt(o.dataset.original)===q.answer)o.classList.add('highlight-correct');});const prev=state.wrongIds[q.id];state.wrongIds[q.id]={attempts:(prev?prev.attempts:0)+1,lastWrong:Date.now()};delete state.correctIds[q.id];document.getElementById('feedback').style.display='block';document.getElementById('feedback').className='feedback-flash wrong';document.getElementById('feedback').textContent=`❌ Wrong — Answer: ${q.options[q.answer]}`;}saveState();updateStats();buildTopicNav();autoAdvanceTimer=setTimeout(()=>nextQuestion(),AUTO_DELAY);}
+function nextQuestion(){if(autoAdvanceTimer){clearTimeout(autoAdvanceTimer);autoAdvanceTimer=null;}currentQuestionIndex++;filteredQuestions=getFilteredQuestions();if(currentQuestionIndex>=filteredQuestions.length){currentQuestionIndex=0;state.questionOrder=shuffleArray([...Array(filteredQuestions.length).keys()]);showToast('🔄 Round complete. Restarting!');}showQuestion();window.scrollTo({top:0,behavior:'smooth'});}
+function shuffleQuestions(){state.questionOrder=[];currentQuestionIndex=0;answeredThisRound=false;showQuestion();showToast('🔀 Shuffled!');}
+function resetProgress(){if(confirm('Reset ALL progress? Cannot be undone.')){state=defaultState();state.questionOrder=[];currentQuestionIndex=0;answeredThisRound=false;filteredQuestions=getFilteredQuestions();saveState();buildTopicNav();updateStats();initSettings();document.getElementById('reviewSection').style.display='none';showQuestion();showToast('🔄 All reset!');}}
+function showWrongReview(){const wrongQs=getWrongQuestions();const section=document.getElementById('reviewSection');if(wrongQs.length===0){section.style.display='block';section.innerHTML=`<div class="empty-state"><div class="icon">🎉</div><p>No wrong answers yet!</p></div>`;section.scrollIntoView({behavior:'smooth'});return;}wrongQs.sort((a,b)=>(state.wrongIds[b.id]?.lastWrong||0)-(state.wrongIds[a.id]?.lastWrong||0));let html=`<div class="review-header"><h2>📋 Wrong (${wrongQs.length})</h2><button class="btn btn-danger" onclick="clearWrongAnswers()">Clear</button></div>`;wrongQs.forEach(q=>{const info=state.wrongIds[q.id];html+=`<div class="review-item"><div class="r-topic">${q.topic}</div><div class="r-q"><b>Q:</b> ${q.question}</div><div class="r-correct">✅ ${q.options[q.answer]}</div><div class="r-attempts">Wrong ${info?info.attempts:1}x | ${info?new Date(info.lastWrong).toLocaleString():''}</div></div>`;});html+=`<div style="text-align:center;margin-top:10px;"><button class="btn btn-primary" onclick="selectTopic('wrong')">🔁 Practice Wrong Only</button></div>`;section.style.display='block';section.innerHTML=html;section.scrollIntoView({behavior:'smooth'});}
+function clearWrongAnswers(){if(confirm('Clear all wrong records?')){state.wrongIds={};saveState();buildTopicNav();updateStats();document.getElementById('reviewSection').style.display='none';if(state.currentTopic==='wrong')selectTopic('all');showToast('🗑️ Cleared!');}}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show';clearTimeout(t._t);t._t=setTimeout(()=>{t.className='toast';},2000);}
+document.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();if(answeredThisRound)nextQuestion();return;}if(answeredThisRound)return;const k=e.key.toUpperCase();if(['A','B','C','D','1','2','3','4'].includes(k)){const idx={A:0,B:1,C:2,D:3,'1':0,'2':1,'3':2,'4':3}[k];const t=[...document.querySelectorAll('.option')].find(o=>o.dataset.label===String.fromCharCode(65+idx));if(t&&t.style.pointerEvents!=='none')t.click();}});
+(function(){state=loadState();state.questionOrder=[];currentQuestionIndex=0;answeredThisRound=false;filteredQuestions=getFilteredQuestions();initSettings();buildTopicNav();updateStats();if(filteredQuestions.length>0)showQuestion();})();
 </script>
 </body>
 </html>
