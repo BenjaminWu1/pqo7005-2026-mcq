@@ -377,8 +377,11 @@ function renderQ(){
 
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
+var autoTimer=null;
+
 function pick(el,chosen){
   if(answered)return;answered=true;
+  if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
   var q=filtQ[curIdx],opts=document.querySelectorAll('.option');
   for(var i=0;i<opts.length;i++)opts[i].style.pointerEvents='none';
   var fb=byId('feedback');
@@ -393,6 +396,8 @@ function pick(el,chosen){
     if(fb){fb.style.display='block';fb.className='feedback-flash fb-wrong';fb.textContent='❌ Wrong — Answer: '+q.o[q.a];}
   }
   saveState();updateStats();
+  // Auto-advance to next question after 1 second
+  autoTimer=setTimeout(function(){autoTimer=null;nextQ();},1000);
 }
 
 function nextQ(){if(curIdx<filtQ.length-1){curIdx++;renderQ();}}
