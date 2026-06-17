@@ -36,6 +36,7 @@
 html,body{height:100%;overflow:hidden;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);-webkit-tap-highlight-color:transparent;}
 .container{max-width:500px;margin:0 auto;height:100dvh;display:flex;flex-direction:column;padding:6px 10px 8px;}
+.fix-banner{background:#4ade80;color:#000;text-align:center;padding:4px;font-size:0.7rem;font-weight:700;flex-shrink:0;border-radius:6px;margin-bottom:4px;}
 .top-bar{display:flex;justify-content:space-between;align-items:center;padding:2px 0 4px;flex-shrink:0;}
 .top-bar .code{font-size:var(--fs-badge);color:var(--accent);font-weight:700;}
 .settings-group{display:flex;gap:2px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1px;}
@@ -93,12 +94,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .all-done .icon{font-size:3rem;margin-bottom:10px;}
 .all-done h3{font-size:var(--fs-qtext);color:var(--text);margin-bottom:4px;}
 .all-done p{font-size:var(--fs-opt);color:var(--text2);}
+#answerShield{pointer-events:auto;touch-action:pan-y;}
 </style>
 </head>
 <body>
 <div class="container">
+  <div class="fix-banner">✅ FIX APPLIED — Select answer, then tap Next to continue</div>
   <div class="top-bar">
-    <span class="code">PQO7005 2026</span>
+    <span class="code">PQO7005 2026 — v2 (shield fix)</span>
     <div style="display:flex;gap:6px;align-items:center;">
       <div class="settings-group">
         <button class="setting-btn active" onclick="setTheme('light')" id="tl">☀️</button>
@@ -359,9 +362,9 @@ function renderQ(){
   html+='<div class="options">'+optHTML+'</div>';
   html+='<div class="feedback-flash" id="feedback" style="display:none;"></div>';
   html+='<div class="q-bottom-nav">';
-  html+='<div class="qbn-arrow'+(qLeftDis?' disabled':'')+'" onclick="prevQ()">◀  Prev</div>';
+  html+='<div class="qbn-arrow'+(qLeftDis?' disabled':'')+'" onclick="prevQBtn()">◀  Prev</div>';
   html+='<span class="qbn-pos">Q '+(curIdx+1)+' / '+filtQ.length+'</span>';
-  html+='<div class="qbn-arrow'+(qRightDis?' disabled':'')+'" onclick="nextQ()">Next  ▶</div>';
+  html+='<div class="qbn-arrow'+(qRightDis?' disabled':'')+'" onclick="nextQBtn()">Next  ▶</div>';
   html+='</div></div>';
 
   byId('quizArea').innerHTML=html;
@@ -379,11 +382,8 @@ function renderQ(){
 
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
-var autoTimer=null;
-
 function pick(el,chosen){
   if(answered)return;answered=true;
-  if(autoTimer){clearTimeout(autoTimer);autoTimer=null;}
   var q=filtQ[curIdx],opts=document.querySelectorAll('.option');
   for(var i=0;i<opts.length;i++)opts[i].style.pointerEvents='none';
   var fb=byId('feedback');
@@ -398,12 +398,29 @@ function pick(el,chosen){
     if(fb){fb.style.display='block';fb.className='feedback-flash fb-wrong';fb.textContent='❌ Wrong — Answer: '+q.o[q.a];}
   }
   saveState();updateStats();
-  // Immediately jump to next question
-  autoTimer=setTimeout(function(){autoTimer=null;nextQ();},0);
+  // Place invisible shield over quiz content — blocks ALL taps except on bottom nav
+  var card=byId('quizCard');if(card){
+    card.style.position='relative';
+    var nav=card.querySelector('.q-bottom-nav');
+    if(nav){nav.style.position='relative';nav.style.zIndex='101';}
+    var shield=byId('answerShield');
+    if(!shield){shield=document.createElement('div');shield.id='answerShield';shield.style.cssText='position:absolute;top:0;left:0;width:100%;height:100%;z-index:100;touch-action:pan-y;';card.appendChild(shield);}
+  }
 }
 
-function nextQ(){if(curIdx<filtQ.length-1){curIdx++;renderQ();}}
-function prevQ(){if(curIdx>0){curIdx--;renderQ();}}
+// nextQ/prevQ are LOCKED when answered=true — only the UI buttons can unlock
+function nextQ(){if(answered)return;if(curIdx<filtQ.length-1){curIdx++;renderQ();}}
+function prevQ(){if(answered)return;if(curIdx>0){curIdx--;renderQ();}}
+function nextQBtn(){
+  var s=byId('answerShield');if(s)s.remove();
+  answered=false;
+  if(curIdx<filtQ.length-1){curIdx++;renderQ();}
+}
+function prevQBtn(){
+  var s=byId('answerShield');if(s)s.remove();
+  answered=false;
+  if(curIdx>0){curIdx--;renderQ();}
+}
 
 function shuffleQuestions(){
   if(filtQ.length===0)return;
@@ -435,15 +452,28 @@ function clearWrong(){
 
 function toast(msg){var t=byId('toast');t.textContent=msg;t.className='toast show';clearTimeout(t._t);t._t=setTimeout(function(){t.className='toast';},2000);}
 
-// Swipe
-var tsX=0;
-document.addEventListener('touchstart',function(e){tsX=e.changedTouches[0].screenX;},{passive:true});
-document.addEventListener('touchend',function(e){if(answered)return;var d=e.changedTouches[0].screenX-tsX;if(Math.abs(d)>60){if(d<0)nextQ();else prevQ();}});
+// Swipe — only on non-interactive areas of the quiz card, not on options/buttons
+var tsX=0, tsTarget=null;
+document.addEventListener('touchstart',function(e){
+  tsX=e.changedTouches[0].screenX;
+  tsTarget=e.target;
+},{passive:true});
+document.addEventListener('touchend',function(e){
+  if(answered)return;
+  // Never treat a tap that started on an interactive element as a swipe
+  try{
+    if(tsTarget && tsTarget.nodeType===1 && (tsTarget.closest('.option') || tsTarget.closest('.qbn-arrow') ||
+       tsTarget.closest('.nav-arrow') || tsTarget.closest('button') ||
+       tsTarget.closest('select') || tsTarget.closest('.btn'))) return;
+  }catch(ex){}
+  var d=e.changedTouches[0].screenX-tsX;
+  if(Math.abs(d)>70){if(d<0)nextQ();else prevQ();}
+});
 
 // Keyboard
 document.addEventListener('keydown',function(e){
-  if(e.key==='ArrowLeft'){e.preventDefault();prevQ();return;}
-  if(e.key==='ArrowRight'){e.preventDefault();if(answered)nextQ();return;}
+  if(e.key==='ArrowLeft'){e.preventDefault();var s=byId('answerShield');if(s)s.remove();answered=false;prevQ();return;}
+  if(e.key==='ArrowRight'){e.preventDefault();var s=byId('answerShield');if(s)s.remove();answered=false;nextQ();return;}
   if(answered)return;
   var k=e.key.toUpperCase();
   if(['A','B','C','D','1','2','3','4'].indexOf(k)>=0){
