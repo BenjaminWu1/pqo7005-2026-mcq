@@ -360,14 +360,6 @@ function onClassChange(val){
   document.getElementById('classSelect').value=val;
 }
 
-function updateNavArrows(){
-  const left=document.getElementById('navLeft'),right=document.getElementById('navRight');
-  const total=filteredQuestions.length;
-  if(total===0){left.classList.add('disabled');right.classList.add('disabled');return;}
-  left.classList.toggle('disabled',currentQuestionIndex===0);
-  right.classList.toggle('disabled',currentQuestionIndex>=total-1);
-}
-
 function updateStats(){
   const f=getFilteredQuestions();
   document.getElementById('statTotal').textContent=f.length;
@@ -437,12 +429,22 @@ function renderQuestion(){
   answeredThisRound=false;
   const optOrder=shuffleArray([0,1,2,3]);
 
+  // Compute class nav arrow states BEFORE the template literal
+  const topics=getTopicList();
+  const classIdx=topics.indexOf(state.currentTopic);
+  const isAll=state.currentTopic==='all';
+  const classLeftDisabled=isAll||classIdx<=0;
+  const classRightDisabled=isAll?false:(classIdx>=topics.length-1);
+  const classLabel=isAll?'All Classifications':q.topic;
+  const qLeftDisabled=currentQuestionIndex===0;
+  const qRightDisabled=currentQuestionIndex>=filteredQuestions.length-1;
+
   const html=`
     <div class="quiz-card" id="quizCard">
       <div class="q-nav">
-        <div class="nav-arrow${state.currentTopic==='all'?' disabled':(getCurrentClassIndex()<=0?' disabled':'')}" onclick="prevClass()">◀</div>
-        <div class="q-badge">${state.currentTopic==='all'?'All Classifications':q.topic}</div>
-        <div class="nav-arrow${state.currentTopic==='all'?'':'${getCurrentClassIndex()>=getTopicList().length-1?' disabled':''}" onclick="nextClass()">▶</div>
+        <div class="nav-arrow${classLeftDisabled?' disabled':''}" onclick="prevClass()">◀</div>
+        <div class="q-badge">${classLabel}</div>
+        <div class="nav-arrow${classRightDisabled?' disabled':''}" onclick="nextClass()">▶</div>
       </div>
       <div class="q-num">Question ${currentQuestionIndex+1} / ${filteredQuestions.length}</div>
       <div class="q-text">${q.question}</div>
@@ -451,9 +453,9 @@ function renderQuestion(){
       </div>
       <div class="feedback-flash" id="feedback" style="display:none;"></div>
       <div class="q-bottom-nav" id="qBottomNav">
-        <div class="nav-arrow${currentQuestionIndex===0?' disabled':''}" onclick="prevQuestion()">◀  Prev</div>
+        <div class="nav-arrow${qLeftDisabled?' disabled':''}" onclick="prevQuestion()">◀  Prev</div>
         <span class="q-pos">Q ${currentQuestionIndex+1} / ${filteredQuestions.length}</span>
-        <div class="nav-arrow${currentQuestionIndex>=filteredQuestions.length-1?' disabled':''}" onclick="nextQuestion()">Next  ▶</div>
+        <div class="nav-arrow${qRightDisabled?' disabled':''}" onclick="nextQuestion()">Next  ▶</div>
       </div>
     </div>`;
   document.getElementById('quizArea').innerHTML=html;
