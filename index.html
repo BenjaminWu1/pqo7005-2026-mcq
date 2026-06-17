@@ -396,8 +396,8 @@ function pick(el,chosen){
     if(fb){fb.style.display='block';fb.className='feedback-flash fb-wrong';fb.textContent='❌ Wrong — Answer: '+q.o[q.a];}
   }
   saveState();updateStats();
-  // Auto-advance to next question after 1 second
-  autoTimer=setTimeout(function(){autoTimer=null;nextQ();},1000);
+  // Immediately jump to next question
+  autoTimer=setTimeout(function(){autoTimer=null;nextQ();},0);
 }
 
 function nextQ(){if(curIdx<filtQ.length-1){curIdx++;renderQ();}}
